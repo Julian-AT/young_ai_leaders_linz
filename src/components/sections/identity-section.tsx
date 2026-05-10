@@ -21,18 +21,19 @@ const FOCUS_AREAS = [
   {
     title: "Education",
     description:
-      "Learn by building real projects, not watching tutorials. Every session ships code.",
+      "Learn by building real projects, not watching lectures. Every session produces working code.",
     icon: <HugeiconsIcon icon={OnlineLearning01Icon} size={24} strokeWidth={1.5} />,
   },
   {
     title: "Empowerment",
     description:
-      "Take ownership from day one. Lead teams, run events, shape the community direction.",
+      "Take real ownership from day one. Lead teams, run events, and shape the community yourself.",
     icon: <HugeiconsIcon icon={Rocket01Icon} size={24} strokeWidth={1.5} />,
   },
   {
     title: "Impact",
-    description: "Ship work that reaches real users. Applied AI for problems that actually matter.",
+    description:
+      "Ship applied AI that reaches real users. Work on problems that actually matter to people.",
     icon: <HugeiconsIcon icon={Target01Icon} size={24} strokeWidth={1.5} />,
   },
 ];
