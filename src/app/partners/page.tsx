@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import { PartnerValueProps } from "@/components/sections/partner-value-props";
 import { ThemeBand } from "@/components/shared/theme-band";
@@ -8,25 +9,46 @@ export const metadata: Metadata = {
   description: "Our ecosystem across academia, industry, and public institutions.",
 };
 
+interface Partner {
+  name: string;
+  logo?: string;
+}
+
 interface PartnerGroup {
   label: string;
-  names: string[];
+  partners: Partner[];
 }
 
 const PARTNER_GROUPS: PartnerGroup[] = [
-  { label: "Global", names: ["AI for Good (UN/ITU)"] },
-  { label: "Public", names: ["City of Linz", "Digital Competence Initiative Austria"] },
+  {
+    label: "Global",
+    partners: [{ name: "AI for Good (UN/ITU)" }],
+  },
+  {
+    label: "Public",
+    partners: [{ name: "City of Linz" }, { name: "Digital Competence Initiative Austria" }],
+  },
   {
     label: "Academic",
-    names: [
-      "JKU Linz",
-      "Linz Institute for Transformative Change",
-      "IT:U Austria",
-      "FH Upper Austria",
+    partners: [
+      { name: "JKU Linz", logo: "/images/JKU_Logo.svg.png" },
+      { name: "Linz Institute for Transformative Change" },
+      { name: "IT:U Austria" },
+      { name: "FH Upper Austria" },
     ],
   },
-  { label: "Industry", names: ["AI Austria", "AI Upper Austria", "Business Upper Austria"] },
-  { label: "Community", names: ["JKU Alumni Club", "LIT Open Innovation Center"] },
+  {
+    label: "Industry",
+    partners: [
+      { name: "AI Austria", logo: "/images/asai-logo-farbe-30d346ea.png" },
+      { name: "AI Upper Austria", logo: "/images/Logo_AI_Klein.png" },
+      { name: "Business Upper Austria" },
+    ],
+  },
+  {
+    label: "Community",
+    partners: [{ name: "JKU Alumni Club" }, { name: "LIT Open Innovation Center" }],
+  },
 ];
 
 export default function PartnersPage() {
@@ -41,15 +63,31 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      <section className="flex flex-col gap-10 py-20">
+      <section className="flex flex-col gap-16 py-20">
         {PARTNER_GROUPS.map((group) => (
-          <div key={group.label} className="flex flex-col gap-2">
+          <div key={group.label} className="flex flex-col gap-4">
             <p className="body-sm text-secondary tracking-wider uppercase">{group.label}</p>
-            <div className="flex flex-wrap gap-x-8 gap-y-1">
-              {group.names.map((name) => (
-                <span key={name} className="body-md">
-                  {name}
-                </span>
+            <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
+              {group.partners.map((partner) => (
+                <div
+                  key={partner.name}
+                  className="flex aspect-[3/2] items-center justify-center rounded-lg border p-4"
+                  style={{ borderColor: "var(--stroke-primary)" }}
+                >
+                  {partner.logo ? (
+                    <Image
+                      src={partner.logo}
+                      alt={partner.name}
+                      width={120}
+                      height={60}
+                      className="max-h-[40px] w-auto object-contain grayscale transition-all duration-200 hover:grayscale-0"
+                    />
+                  ) : (
+                    <span className="text-secondary text-center text-[11px] font-medium tracking-wide">
+                      {partner.name}
+                    </span>
+                  )}
+                </div>
               ))}
             </div>
           </div>
