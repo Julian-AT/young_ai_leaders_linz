@@ -10,10 +10,10 @@ import { APPLY_URL, NAV_LINKS } from "@/content/site";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const navUlRef = useRef<HTMLUListElement | null>(null);
   const pathname = usePathname();
   const isHome = pathname === "/";
-  const [scrolledPastHero, setScrolledPastHero] = useState(false);
 
   useEffect(() => {
     if (!isHome) return;
@@ -24,8 +24,6 @@ export function Header() {
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
   }, [isHome]);
-
-  const navShift = !isHome || scrolledPastHero;
 
   return (
     <div className="page-margins bg-primary text-primary sticky top-0 z-20 mx-auto w-full max-w-[1280px] transition-colors duration-500">
@@ -47,11 +45,13 @@ export function Header() {
           </div>
 
           <div className="flex min-h-[32px] items-center justify-end md:col-span-2 md:col-start-2 lg:col-span-1 lg:col-start-3">
-            <nav className="hidden overflow-visible md:block">
+            <nav className="hidden w-full md:block">
               <ul
                 ref={navUlRef}
-                className="body-sm flex min-h-[34px] items-center gap-6 whitespace-nowrap transition-transform duration-500"
-                style={{ transform: navShift ? "translateX(-140px)" : "none" }}
+                className="body-sm flex h-full min-h-[34px] w-full items-center justify-end gap-6 whitespace-nowrap transition-all duration-500"
+                style={{
+                  transform: isHome && scrolledPastHero ? "translateX(-140px)" : "none",
+                }}
               >
                 {NAV_LINKS.map((link) => (
                   <li key={link.label}>
@@ -63,17 +63,20 @@ export function Header() {
                     </Link>
                   </li>
                 ))}
+                {!isHome && (
+                  <li>
+                    <a
+                      href={APPLY_URL}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="btn-small inline-flex whitespace-nowrap"
+                    >
+                      Apply Now
+                    </a>
+                  </li>
+                )}
               </ul>
             </nav>
-            <a
-              href={APPLY_URL}
-              target="_blank"
-              rel="noreferrer"
-              className="btn-small hidden whitespace-nowrap transition-opacity duration-500 md:inline-flex"
-              style={{ opacity: navShift ? 1 : 0, pointerEvents: navShift ? "auto" : "none" }}
-            >
-              Apply Now
-            </a>
             <button
               type="button"
               aria-label="Toggle menu"
