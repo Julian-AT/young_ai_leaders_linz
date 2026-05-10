@@ -39,8 +39,12 @@ export const metadata: Metadata = {
     "We build AI that matters. A youth-led community in Linz, part of the global AI for Good network.",
   metadataBase: new URL("https://youngaileaderslinz.at"),
   icons: {
-    icon: [{ url: "/logos/yall-logo.png", type: "image/png" }],
-    apple: { url: "/logos/yall-logo.png", type: "image/png" },
+    icon: [
+      { url: "/seo/favicon-16.png", sizes: "16x16", type: "image/png" },
+      { url: "/seo/favicon-32.png", sizes: "32x32", type: "image/png" },
+      { url: "/seo/icon-192.png", sizes: "192x192", type: "image/png" },
+    ],
+    apple: { url: "/seo/apple-icon.png", sizes: "180x180", type: "image/png" },
   },
   openGraph: {
     title: "Young AI Leaders Linz",
