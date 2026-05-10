@@ -5,6 +5,7 @@ import localFont from "next/font/local";
 
 import { Footer } from "@/components/shared/footer";
 import { Header } from "@/components/shared/header";
+import { ScrollToTop } from "@/components/shared/scroll-to-top";
 import { SmoothScroll } from "@/components/shared/smooth-scroll";
 
 const riformaLL = localFont({
@@ -94,6 +95,7 @@ export default function RootLayout({
             }),
           }}
         />
+        <ScrollToTop />
         <SmoothScroll />
         <Header />
         <main className="page-margins mx-auto max-w-[1280px]">

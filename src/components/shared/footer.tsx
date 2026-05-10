@@ -62,19 +62,19 @@ export function Footer() {
           <div className="col-span-3 md:col-span-1">
             <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
               <nav className="flex flex-col items-start gap-2">
+                {SOCIAL_LINKS.map((link) => (
+                  <FooterLink key={link.label} href={link.href} icon={link.icon} external>
+                    {link.label}
+                  </FooterLink>
+                ))}
+              </nav>
+              <nav className="flex flex-col items-start gap-2">
                 <FooterLink href="/about">About</FooterLink>
                 <FooterLink href="/programs">Programs</FooterLink>
                 <FooterLink href="/partners">Partners</FooterLink>
                 <FooterLink href="/join">Join Us</FooterLink>
               </nav>
-              <nav className="flex flex-col items-start gap-2">
-                {SOCIAL_LINKS.map((link) => (
-                  <FooterLink key={link.label} href={link.href} external>
-                    {link.label}
-                  </FooterLink>
-                ))}
-              </nav>
-              <div className="col-span-2 mt-6 lg:col-span-1 lg:mt-0 lg:flex lg:justify-end">
+              <div className="lg:col-span-1 lg:mt-0">
                 <button
                   type="button"
                   className="body-sm hover:text-secondary flex cursor-pointer items-center gap-1 duration-100"
@@ -136,19 +136,22 @@ function FooterLink({
   href,
   children,
   external,
+  icon,
 }: {
   href: string;
   children: React.ReactNode;
   external?: boolean;
+  icon?: React.ReactNode;
 }) {
   return (
     <Link
       href={href}
       target={external ? "_blank" : undefined}
       rel={external ? "noreferrer" : undefined}
-      className="body-sm hover:text-secondary group relative flex flex-row duration-100"
+      className="body-sm hover:text-secondary group relative flex flex-row items-center gap-1 duration-100"
     >
-      <span>{children}</span>
+      {icon ? <div>{icon}</div> : null}
+      <span className="flex items-center gap-1">{children}</span>
       {external ? (
         <span className="absolute -right-4">
           <ArrowOutIcon className="text-secondary opacity-0 transition-opacity duration-100 group-hover:opacity-100" />
