@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 interface Partner {
   name: string;
   logo?: string;
+  scale?: number;
 }
 
 interface PartnerGroup {
@@ -22,32 +23,38 @@ interface PartnerGroup {
 const PARTNER_GROUPS: PartnerGroup[] = [
   {
     label: "Global",
-    partners: [{ name: "AI for Good (UN/ITU)" }],
+    partners: [{ name: "AI for Good (UN/ITU)", logo: "/logos/ai_for_good.png", scale: 1.3 }],
   },
   {
     label: "Public",
-    partners: [{ name: "City of Linz" }, { name: "Digital Competence Initiative Austria" }],
+    partners: [
+      { name: "City of Linz", logo: "/logos/linz.png" },
+      { name: "Digital Competence Initiative Austria" },
+    ],
   },
   {
     label: "Academic",
     partners: [
-      { name: "JKU Linz", logo: "/images/JKU_Logo.svg.png" },
+      { name: "JKU Linz", logo: "/logos/JKU_Logo.svg.png" },
       { name: "Linz Institute for Transformative Change" },
-      { name: "IT:U Austria" },
-      { name: "FH Upper Austria" },
+      { name: "IT:U Austria", logo: "/logos/itu_austria.png", scale: 1.2 },
+      { name: "FH Upper Austria", logo: "/logos/fh_upper_austria.png", scale: 1.2 },
     ],
   },
   {
     label: "Industry",
     partners: [
-      { name: "AI Austria", logo: "/images/asai-logo-farbe-30d346ea.png" },
-      { name: "AI Upper Austria", logo: "/images/Logo_AI_Klein.png" },
-      { name: "Business Upper Austria" },
+      { name: "AI Austria", logo: "/logos/Logo_AI_Klein.png" },
+      { name: "AI Upper Austria", logo: "/logos/Logo_AI_Klein.png" },
+      { name: "Business Upper Austria", logo: "/logos/buisiness_upper_austria.webp", scale: 1.4 },
     ],
   },
   {
     label: "Community",
-    partners: [{ name: "JKU Alumni Club" }, { name: "LIT Open Innovation Center" }],
+    partners: [
+      { name: "JKU Alumni Club", logo: "/logos/jku_alumni.webp", scale: 1.2 },
+      { name: "LIT Open Innovation Center", logo: "/logos/lit_innovation_center.png", scale: 1.3 },
+    ],
   },
 ];
 
@@ -71,7 +78,7 @@ export default function PartnersPage() {
               {group.partners.map((partner) => (
                 <div
                   key={partner.name}
-                  className="flex aspect-[3/2] items-center justify-center rounded-lg border p-4"
+                  className="flex aspect-[3/2] items-center justify-center overflow-hidden rounded-lg border p-4"
                   style={{ borderColor: "var(--stroke-primary)" }}
                 >
                   {partner.logo ? (
@@ -80,7 +87,8 @@ export default function PartnersPage() {
                       alt={partner.name}
                       width={120}
                       height={60}
-                      className="max-h-[40px] w-auto object-contain grayscale transition-all duration-200 hover:grayscale-0"
+                      className="max-h-[40px] w-auto object-contain"
+                      style={{ transform: `scale(${partner.scale ?? 1})` }}
                     />
                   ) : (
                     <span className="text-secondary text-center text-[11px] font-medium tracking-wide">

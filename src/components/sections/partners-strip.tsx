@@ -3,19 +3,20 @@ import Image from "next/image";
 interface Partner {
   name: string;
   logo?: string;
+  scale?: number;
 }
 
 const PARTNERS: Partner[] = [
-  { name: "AI for Good (UN/ITU)" },
-  { name: "City of Linz" },
-  { name: "JKU Linz", logo: "/images/JKU_Logo.svg.png" },
-  { name: "FH Upper Austria" },
-  { name: "AI Austria", logo: "/images/asai-logo-farbe-30d346ea.png" },
-  { name: "AI Upper Austria", logo: "/images/Logo_AI_Klein.png" },
-  { name: "Business Upper Austria" },
-  { name: "IT:U Austria" },
-  { name: "LIT Open Innovation Center" },
-  { name: "JKU Alumni Club" },
+  { name: "AI for Good (UN/ITU)", logo: "/logos/ai_for_good.png", scale: 1.3 },
+  { name: "City of Linz", logo: "/logos/linz.png" },
+  { name: "JKU Linz", logo: "/logos/JKU_Logo.svg.png" },
+  { name: "FH Upper Austria", logo: "/logos/fh_upper_austria.png", scale: 1.2 },
+  { name: "AI Austria", logo: "/logos/Logo_AI_Klein.png" },
+  { name: "AI Upper Austria", logo: "/logos/Logo_AI_Klein.png" },
+  { name: "Business Upper Austria", logo: "/logos/buisiness_upper_austria.webp", scale: 1.4 },
+  { name: "IT:U Austria", logo: "/logos/itu_austria.png", scale: 1.2 },
+  { name: "LIT Open Innovation Center", logo: "/logos/lit_innovation_center.png", scale: 1.3 },
+  { name: "JKU Alumni Club", logo: "/logos/jku_alumni.webp", scale: 1.2 },
 ];
 
 export function PartnersStrip() {
@@ -36,7 +37,7 @@ export function PartnersStrip() {
         {PARTNERS.map((partner) => (
           <div
             key={partner.name}
-            className="flex aspect-[3/2] items-center justify-center rounded-lg border p-4"
+            className="flex aspect-[3/2] items-center justify-center overflow-hidden rounded-lg border p-4"
             style={{ borderColor: "var(--stroke-primary)" }}
           >
             {partner.logo ? (
@@ -45,10 +46,11 @@ export function PartnersStrip() {
                 alt={partner.name}
                 width={120}
                 height={60}
-                className="max-h-[40px] w-auto object-contain grayscale transition-all duration-200 hover:grayscale-0"
+                className="max-h-[40px] w-auto object-contain"
+                style={{ transform: `scale(${partner.scale ?? 1})` }}
               />
             ) : (
-              <span className="body-sm text-secondary text-center text-[11px] font-medium tracking-wide">
+              <span className="text-secondary text-center text-[11px] font-medium tracking-wide">
                 {partner.name}
               </span>
             )}
