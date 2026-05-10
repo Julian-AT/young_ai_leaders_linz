@@ -4,10 +4,10 @@ import { Pillars } from "@/components/sections/pillars";
 import { useReveal } from "@/hooks/use-reveal";
 
 const FOCUS_AREAS = [
-  { title: "Community", description: "Local roots, global network." },
+  { title: "Community", description: "Local roots with global reach." },
   { title: "Education", description: "Learn by building, not watching." },
-  { title: "Empowerment", description: "Lead from day one." },
-  { title: "Impact", description: "Ship work that matters." },
+  { title: "Empowerment", description: "Real responsibility from day one." },
+  { title: "Impact", description: "Ship work that actually matters." },
 ];
 
 export function IdentitySection() {

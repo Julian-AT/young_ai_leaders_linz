@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 const PILLARS = [
   { title: "Community", description: "Local hub, global network." },
-  { title: "Education", description: "From first principles to production." },
+  { title: "Education", description: "First principles to production." },
   { title: "Empowerment", description: "Real responsibility from day one." },
   { title: "Impact", description: "Outcomes that matter beyond campus." },
 ];
