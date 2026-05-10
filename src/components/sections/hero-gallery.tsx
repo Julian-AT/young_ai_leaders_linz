@@ -88,7 +88,62 @@ function clamp01(n: number) {
   return Math.min(1, Math.max(0, n));
 }
 
-export function HeroGallery() {
+function MobileGallery() {
+  return (
+    <div className="mt-4 grid grid-cols-3 grid-rows-2 gap-1 md:hidden">
+      <div className="relative col-span-1 row-span-1 aspect-[3/4] overflow-hidden rounded-sm">
+        <Image
+          src="/images/workshop.jpeg"
+          alt="Workshop"
+          width={2048}
+          height={1394}
+          priority
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="relative col-span-1 row-span-1 aspect-[3/4] overflow-hidden rounded-sm">
+        <Image
+          src="/images/hackathon.jpg"
+          alt="Hackathon"
+          width={1080}
+          height={1350}
+          priority
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="relative col-span-1 row-span-1 aspect-[3/4] overflow-hidden rounded-sm">
+        <Image
+          src="/images/community.jpeg"
+          alt="Community"
+          width={2048}
+          height={1365}
+          priority
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="relative col-span-1 row-span-1 aspect-[3/4] overflow-hidden rounded-sm">
+        <Image
+          src="/images/event.jpeg"
+          alt="Event"
+          width={2048}
+          height={1536}
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div className="relative col-span-2 row-span-1 aspect-[3/2] overflow-hidden rounded-sm">
+        <Image
+          src="/images/team.jpg"
+          alt="Team"
+          width={1080}
+          height={1080}
+          className="h-full w-full object-cover"
+        />
+      </div>
+    </div>
+  );
+}
+
+function DesktopGallery() {
   const wrapRef = useRef<HTMLDivElement | null>(null);
   const [progress, setProgress] = useState(0);
 
@@ -117,10 +172,10 @@ export function HeroGallery() {
   const textOpacity = clamp01((progress - 0.5) * 3);
 
   return (
-    <div ref={wrapRef} className="relative mt-4 snap-center md:mt-6 lg:mt-20">
+    <div ref={wrapRef} className="relative hidden md:mt-6 md:block lg:mt-20">
       <div className="group relative h-[140vh]">
         <div
-          className="sticky h-[80vh] w-full lg:h-[calc(100vh_-_500px)] lg:max-h-[1200px] lg:min-h-[820px]"
+          className="sticky h-[calc(100vh_-_500px)] max-h-[1200px] min-h-[820px] w-full"
           style={{ top: 40 }}
         >
           <div
@@ -180,5 +235,14 @@ export function HeroGallery() {
         </div>
       </div>
     </div>
+  );
+}
+
+export function HeroGallery() {
+  return (
+    <>
+      <MobileGallery />
+      <DesktopGallery />
+    </>
   );
 }
