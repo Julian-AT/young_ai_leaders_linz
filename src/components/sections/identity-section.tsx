@@ -1,8 +1,8 @@
 "use client";
 
 import {
-  OnlineLearning01Icon,
-  Rocket01Icon,
+  BookOpen02Icon,
+  BubbleChatSpark01Icon,
   Target01Icon,
   UserGroupIcon,
 } from "@hugeicons/core-free-icons";
@@ -20,20 +20,17 @@ const FOCUS_AREAS = [
   },
   {
     title: "Education",
-    description:
-      "Learn by building real projects, not watching lectures. Every session produces working code.",
-    icon: <HugeiconsIcon icon={OnlineLearning01Icon} size={24} strokeWidth={1.5} />,
+    description: "Learn by building real projects, not watching lectures and essays.",
+    icon: <HugeiconsIcon icon={BookOpen02Icon} size={24} strokeWidth={1.5} />,
   },
   {
     title: "Empowerment",
-    description:
-      "Take real ownership from day one. Lead teams, run events, and shape the community yourself.",
-    icon: <HugeiconsIcon icon={Rocket01Icon} size={24} strokeWidth={1.5} />,
+    description: "Take real ownership from day one. Lead teams, run events and community.",
+    icon: <HugeiconsIcon icon={BubbleChatSpark01Icon} size={24} strokeWidth={1.5} />,
   },
   {
     title: "Impact",
-    description:
-      "Ship applied AI that reaches real users. Work on problems that actually matter to people.",
+    description: "Ship applied AI. Work on problems that actually matter to people.",
     icon: <HugeiconsIcon icon={Target01Icon} size={24} strokeWidth={1.5} />,
   },
 ];

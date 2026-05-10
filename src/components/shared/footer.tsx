@@ -60,25 +60,13 @@ export function Footer() {
             <p className="h4 text-secondary">Part of AI for Good</p>
           </div>
           <div className="col-span-3 md:col-span-1">
-            <div className="flex flex-col gap-10">
-              <div className="flex flex-col lg:flex-row lg:justify-between">
-                <nav className="flex flex-col items-start gap-2">
-                  <FooterLink href="/about">About</FooterLink>
-                  <FooterLink href="/programs">Programs</FooterLink>
-                  <FooterLink href="/partners">Partners</FooterLink>
-                  <FooterLink href="/join">Join Us</FooterLink>
-                </nav>
-                <Link
-                  className="body-sm hidden lg:flex"
-                  href="#"
-                  onClick={(e) => {
-                    e.preventDefault();
-                    window.scrollTo({ top: 0, behavior: "smooth" });
-                  }}
-                >
-                  <span className="hover:text-secondary cursor-pointer">Back to top</span>
-                </Link>
-              </div>
+            <div className="grid grid-cols-2 gap-6 lg:grid-cols-3">
+              <nav className="flex flex-col items-start gap-2">
+                <FooterLink href="/about">About</FooterLink>
+                <FooterLink href="/programs">Programs</FooterLink>
+                <FooterLink href="/partners">Partners</FooterLink>
+                <FooterLink href="/join">Join Us</FooterLink>
+              </nav>
               <nav className="flex flex-col items-start gap-2">
                 {SOCIAL_LINKS.map((link) => (
                   <FooterLink key={link.label} href={link.href} external>
@@ -86,6 +74,29 @@ export function Footer() {
                   </FooterLink>
                 ))}
               </nav>
+              <div className="col-span-2 mt-6 lg:col-span-1 lg:mt-0 lg:flex lg:justify-end">
+                <button
+                  type="button"
+                  className="body-sm hover:text-secondary flex cursor-pointer items-center gap-1 duration-100"
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                >
+                  <span>Back to top</span>
+                  <svg
+                    width="14"
+                    height="14"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    className="inline-block"
+                  >
+                    <path
+                      d="M12 19V5M12 5L6 11M12 5L18 11"
+                      stroke="currentColor"
+                      strokeWidth="1.5"
+                      strokeLinecap="square"
+                    />
+                  </svg>
+                </button>
+              </div>
             </div>
           </div>
         </div>
