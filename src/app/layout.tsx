@@ -3,6 +3,10 @@ import "./globals.css";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
+import { Footer } from "@/components/shared/footer";
+import { Header } from "@/components/shared/header";
+import { SmoothScroll } from "@/components/shared/smooth-scroll";
+
 const riformaLL = localFont({
   src: [
     { path: "../../public/fonts/riformaLL-400.woff2", weight: "400", style: "normal" },
@@ -41,7 +45,7 @@ export const metadata: Metadata = {
     title: "Young AI Leaders Linz",
     description:
       "We build AI that matters. A youth-led community in Linz, part of the global AI for Good network.",
-    images: ["/logos/yall-logo.png"],
+    images: ["/seo/og.png"],
     type: "website",
   },
   twitter: {
@@ -49,7 +53,7 @@ export const metadata: Metadata = {
     title: "Young AI Leaders Linz",
     description:
       "We build AI that matters. A youth-led community in Linz, part of the global AI for Good network.",
-    images: ["/logos/yall-logo.png"],
+    images: ["/seo/og.png"],
   },
 };
 
@@ -61,7 +65,43 @@ export default function RootLayout({
   return (
     <html lang="en" className={`${riformaLL.variable} ${riformaMono.variable} scroll-smooth`}>
       <body className="bg-primary text-primary font-riforma mx-auto antialiased transition-colors duration-500">
-        {children}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: "Young AI Leaders Linz",
+              url: "https://youngaileaderslinz.at",
+              logo: "https://youngaileaderslinz.at/logos/yall-logo.png",
+              description:
+                "Youth-led AI community in Linz, part of the global AI for Good network.",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Linz",
+                addressCountry: "AT",
+              },
+              sameAs: [
+                "https://www.linkedin.com/company/youngaileaderslinz",
+                "https://www.instagram.com/youngaileaderslinz/",
+                "https://www.tiktok.com/@youngaileaderslinz",
+              ],
+              parentOrganization: {
+                "@type": "Organization",
+                name: "AI for Good",
+                url: "https://aiforgood.itu.int/",
+              },
+            }),
+          }}
+        />
+        <SmoothScroll />
+        <Header />
+        <main className="page-margins mx-auto max-w-[1280px]">
+          <div>{children}</div>
+        </main>
+        <div className="page-margins mx-auto max-w-[1280px]">
+          <Footer />
+        </div>
       </body>
     </html>
   );

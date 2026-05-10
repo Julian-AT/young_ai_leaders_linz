@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
 
-import { Footer } from "@/components/shared/footer";
-import { Header } from "@/components/shared/header";
-import { SmoothScroll } from "@/components/shared/smooth-scroll";
 import { ThemeBand } from "@/components/shared/theme-band";
 
 export const metadata: Metadata = {
@@ -108,27 +105,18 @@ function ProgramBlock({ program }: { program: ProgramSection }) {
 export default function ProgramsPage() {
   return (
     <>
-      <SmoothScroll />
-      <Header />
-      <main className="page-margins mx-auto max-w-[1280px]">
-        <div>
-          <section className="grid grid-cols-3 gap-6 pt-20 pb-20 md:gap-10 md:pt-30 lg:gap-20 lg:pt-20">
-            <div className="col-span-3 lg:col-span-2">
-              <h1 className="h1 mb-6 max-w-[20ch] text-balance">What we build.</h1>
-              <p className="body-md max-w-[38ch] text-balance">
-                Four programs designed to take you from learning to shipping.
-              </p>
-            </div>
-          </section>
-
-          {PROGRAMS.map((program) => (
-            <ProgramBlock key={program.title} program={program} />
-          ))}
+      <section className="grid grid-cols-3 gap-6 pt-20 pb-20 md:gap-10 md:pt-30 lg:gap-20 lg:pt-20">
+        <div className="col-span-3 lg:col-span-2">
+          <h1 className="h1 mb-6 max-w-[20ch] text-balance">What we build.</h1>
+          <p className="body-md max-w-[38ch] text-balance">
+            Four programs designed to take you from learning to shipping.
+          </p>
         </div>
-      </main>
-      <div className="page-margins mx-auto max-w-[1280px]">
-        <Footer />
-      </div>
+      </section>
+
+      {PROGRAMS.map((program) => (
+        <ProgramBlock key={program.title} program={program} />
+      ))}
     </>
   );
 }
