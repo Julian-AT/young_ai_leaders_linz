@@ -2,24 +2,13 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 
 import { MenuIcon } from "@/components/shared/icons";
 import { APPLY_URL, NAV_LINKS } from "@/content/site";
 
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [navShift, setNavShift] = useState(false);
-  const navUlRef = useRef<HTMLUListElement | null>(null);
-
-  useEffect(() => {
-    const onScroll = () => {
-      setNavShift(window.scrollY > 400);
-    };
-    onScroll();
-    window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
-  }, []);
 
   return (
     <div className="page-margins bg-primary text-primary sticky top-0 z-20 mx-auto w-full max-w-[1280px] transition-colors duration-500">
@@ -40,13 +29,9 @@ export function Header() {
             </Link>
           </div>
 
-          <div className="flex min-h-[32px] justify-end md:col-span-2 md:col-start-2 lg:col-span-1 lg:col-start-3">
+          <div className="flex min-h-[32px] items-center justify-end gap-4 md:col-span-2 md:col-start-2 lg:col-span-1 lg:col-start-3">
             <nav className="hidden w-full md:block">
-              <ul
-                ref={navUlRef}
-                className="body-sm flex h-full min-h-[34px] w-full items-center justify-end gap-6 transition-all duration-500"
-                style={{ transform: navShift ? "translateX(-140px)" : "none" }}
-              >
+              <ul className="body-sm flex h-full min-h-[34px] w-full items-center justify-end gap-6">
                 {NAV_LINKS.map((link) => (
                   <li key={link.label}>
                     <Link
@@ -57,6 +42,16 @@ export function Header() {
                     </Link>
                   </li>
                 ))}
+                <li>
+                  <a
+                    href={APPLY_URL}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="btn-small inline-flex"
+                  >
+                    Apply Now
+                  </a>
+                </li>
               </ul>
             </nav>
             <button
