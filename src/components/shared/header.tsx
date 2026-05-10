@@ -46,11 +46,11 @@ export function Header() {
             </Link>
           </div>
 
-          <div className="flex min-h-[32px] justify-end md:col-span-2 md:col-start-2 lg:col-span-1 lg:col-start-3">
-            <nav className="hidden w-full md:block">
+          <div className="flex min-h-[32px] items-center justify-end md:col-span-2 md:col-start-2 lg:col-span-1 lg:col-start-3">
+            <nav className="hidden overflow-visible md:block">
               <ul
                 ref={navUlRef}
-                className="body-sm flex h-full min-h-[34px] w-full items-center justify-end gap-6 transition-all duration-500"
+                className="body-sm flex min-h-[34px] items-center gap-6 whitespace-nowrap transition-transform duration-500"
                 style={{ transform: navShift ? "translateX(-140px)" : "none" }}
               >
                 {NAV_LINKS.map((link) => (
@@ -69,7 +69,7 @@ export function Header() {
               href={APPLY_URL}
               target="_blank"
               rel="noreferrer"
-              className="btn-small hidden whitespace-nowrap transition-opacity duration-300 md:inline-flex"
+              className="btn-small hidden whitespace-nowrap transition-opacity duration-500 md:inline-flex"
               style={{ opacity: navShift ? 1 : 0, pointerEvents: navShift ? "auto" : "none" }}
             >
               Apply Now
