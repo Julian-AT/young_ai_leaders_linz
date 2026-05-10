@@ -1,10 +1,13 @@
 "use client";
 
+import type { ReactNode } from "react";
+
 import { useReveal } from "@/hooks/use-reveal";
 
 interface Pillar {
   title: string;
   description: string;
+  icon?: ReactNode;
 }
 
 export function Pillars({ items, className }: { items: Pillar[]; className?: string }) {
@@ -22,6 +25,7 @@ export function Pillars({ items, className }: { items: Pillar[]; className?: str
             className="md:basis-1/4 md:pr-8 md:pl-8 md:first:pl-0 lg:pr-12 lg:pl-12"
             style={{ transitionDelay: `${i * 100}ms` }}
           >
+            {item.icon && <div className="text-secondary mb-3">{item.icon}</div>}
             <dt className="body-md font-medium">{item.title}</dt>
             <dd className="body-md text-secondary mt-2">{item.description}</dd>
           </div>

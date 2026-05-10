@@ -1,13 +1,40 @@
 "use client";
 
+import {
+  OnlineLearning01Icon,
+  Rocket01Icon,
+  Target01Icon,
+  UserGroupIcon,
+} from "@hugeicons/core-free-icons";
+import { HugeiconsIcon } from "@hugeicons/react";
+
 import { Pillars } from "@/components/sections/pillars";
 import { useReveal } from "@/hooks/use-reveal";
 
 const FOCUS_AREAS = [
-  { title: "Community", description: "Local roots with global reach." },
-  { title: "Education", description: "Learn by building, not watching." },
-  { title: "Empowerment", description: "Real responsibility from day one." },
-  { title: "Impact", description: "Ship work that actually matters." },
+  {
+    title: "Community",
+    description:
+      "Local roots with a global network. Connect with builders across 100+ hubs worldwide.",
+    icon: <HugeiconsIcon icon={UserGroupIcon} size={24} strokeWidth={1.5} />,
+  },
+  {
+    title: "Education",
+    description:
+      "Learn by building real projects, not watching tutorials. Every session ships code.",
+    icon: <HugeiconsIcon icon={OnlineLearning01Icon} size={24} strokeWidth={1.5} />,
+  },
+  {
+    title: "Empowerment",
+    description:
+      "Take ownership from day one. Lead teams, run events, shape the community direction.",
+    icon: <HugeiconsIcon icon={Rocket01Icon} size={24} strokeWidth={1.5} />,
+  },
+  {
+    title: "Impact",
+    description: "Ship work that reaches real users. Applied AI for problems that actually matter.",
+    icon: <HugeiconsIcon icon={Target01Icon} size={24} strokeWidth={1.5} />,
+  },
 ];
 
 export function IdentitySection() {
@@ -29,8 +56,7 @@ export function IdentitySection() {
         </div>
         <div className="col-span-3 lg:col-span-1">
           <p className="body-md lg:max-w-none">
-            The Austrian hub of AI for Good. Applied projects, education, and international
-            collaboration.
+            Global hub of AI for Good. Applied projects, education, and international collaboration.
           </p>
         </div>
       </div>
