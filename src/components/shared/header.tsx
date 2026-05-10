@@ -8,17 +8,25 @@ import { useEffect, useRef, useState } from "react";
 import { MenuIcon } from "@/components/shared/icons";
 import { APPLY_URL, NAV_LINKS } from "@/content/site";
 
+const HOME_NAV_SCROLL_RANGE_PX = 400;
+const HOME_NAV_MAX_OFFSET_PX = 140;
+
 export function Header() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const [homeScrollY, setHomeScrollY] = useState(0);
   const navUlRef = useRef<HTMLUListElement | null>(null);
   const pathname = usePathname();
   const isHome = pathname === "/";
 
+  const homeNavTranslateX = isHome
+    ? -(Math.min(Math.max(homeScrollY, 0), HOME_NAV_SCROLL_RANGE_PX) / HOME_NAV_SCROLL_RANGE_PX) *
+      HOME_NAV_MAX_OFFSET_PX
+    : 0;
+
   useEffect(() => {
     if (!isHome) return;
     const onScroll = () => {
-      setScrolledPastHero(window.scrollY > 400);
+      setHomeScrollY(window.scrollY);
     };
     onScroll();
     window.addEventListener("scroll", onScroll, { passive: true });
@@ -48,10 +56,8 @@ export function Header() {
             <nav className="hidden w-full md:block">
               <ul
                 ref={navUlRef}
-                className="body-sm flex h-full min-h-[34px] w-full items-center justify-end gap-6 whitespace-nowrap transition-all duration-500"
-                style={{
-                  transform: isHome && scrolledPastHero ? "translateX(-140px)" : "none",
-                }}
+                className="body-sm flex h-full min-h-[34px] w-full items-center justify-end gap-6 whitespace-nowrap"
+                style={isHome ? { transform: `translateX(${homeNavTranslateX}px)` } : undefined}
               >
                 {NAV_LINKS.map((link) => (
                   <li key={link.label}>

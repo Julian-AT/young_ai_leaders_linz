@@ -36,8 +36,7 @@ export function StatsSection() {
         </div>
         <div className="col-span-3 lg:col-span-1">
           <p className="body-md lg:max-w-none">
-            Part of the UN AI for Good network. Building alongside Zurich, Stanford, London, and
-            Munich.
+            Part of the UN AI. Building alongside Zurich, Stanford, London, and Munich.
           </p>
         </div>
       </div>
