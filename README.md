@@ -1,36 +1,78 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Young AI Leaders Linz
+
+Marketing website for Young AI Leaders Linz — the Austrian hub of the global AI for Good network.
+
+## Tech Stack
+
+- **Next.js 16** — App Router, React 19, TypeScript strict
+- **Tailwind CSS v4** — oklch design tokens, CSS-first config
+- **shadcn/ui** — Radix primitives
+- **Deployment** — Docker (standalone) or Vercel
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+node --version  # Requires Node.js 24+
+npm install
+npm run dev     # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Scripts
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+| Command                | Description               |
+| ---------------------- | ------------------------- |
+| `npm run dev`          | Start dev server          |
+| `npm run build`        | Production build          |
+| `npm run start`        | Serve production build    |
+| `npm run lint`         | ESLint check              |
+| `npm run lint:fix`     | ESLint auto-fix           |
+| `npm run typecheck`    | TypeScript check          |
+| `npm run format`       | Prettier format all files |
+| `npm run format:check` | Check formatting          |
+| `npm run check`        | lint + typecheck + build  |
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Project Structure
 
-## Learn More
+```
+src/
+  app/                    # Next.js routes (7 pages)
+  components/
+    shared/               # Layout components (header, footer, smooth-scroll, theme-band)
+    sections/             # Page sections (hero, stats, programs, partners, etc.)
+    ui/                   # shadcn/ui primitives
+  content/                # Static content data (future CMS swap-point)
+  hooks/                  # Shared React hooks (use-reveal, use-typewriter)
+  config/                 # Environment validation
+  lib/                    # Utilities (cn)
+public/
+  fonts/                  # Self-hosted WOFF2
+  images/                 # Site images
+  videos/                 # WebM + MP4 pairs
+  logos/                  # Brand assets
+  seo/                    # Favicon, OG image
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Architecture
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- **Server-first** — client components only where interactivity is required
+- **Content layer** (`src/content/`) — centralized data, ready for future CMS integration
+- **No global state** — server rendering, props, URL state only
+- **No barrel exports** — explicit file imports for tree-shaking
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Development Workflow
 
-## Deploy on Vercel
+Pre-commit hooks run automatically via Husky + lint-staged:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- ESLint auto-fix
+- Prettier formatting
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Docker
+
+```bash
+docker compose up app --build    # Production on port 3000
+docker compose up dev --build    # Dev mode on port 3001
+```
+
+## Environment
+
+Copy `.env.example` to `.env.local` and configure as needed. See `src/config/env.ts` for the validation schema.
