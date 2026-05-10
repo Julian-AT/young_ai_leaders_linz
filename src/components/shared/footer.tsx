@@ -19,7 +19,7 @@ export function Footer() {
   const { ref: formRef, revealed } = useReveal(0.3);
 
   return (
-    <footer className="flex flex-col gap-30 pt-20 pb-6">
+    <footer className="flex flex-col gap-12 pt-12 pb-6 md:gap-20 md:pt-20 lg:gap-30">
       <div
         ref={formRef}
         id="join-cta"
@@ -73,28 +73,23 @@ export function Footer() {
                 <FooterLink href="/programs">Programs</FooterLink>
                 <FooterLink href="/partners">Partners</FooterLink>
                 <FooterLink href="/join">Join Us</FooterLink>
+                <button
+                  type="button"
+                  className="body-sm hover:text-secondary mt-2 flex cursor-pointer items-center gap-1 duration-100 lg:hidden"
+                  onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+                >
+                  <span>Back to top</span>
+                  <BackToTopIcon />
+                </button>
               </nav>
-              <div className="lg:col-span-1 lg:mt-0">
+              <div className="hidden lg:block">
                 <button
                   type="button"
                   className="body-sm hover:text-secondary flex cursor-pointer items-center gap-1 duration-100"
                   onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
                 >
                   <span>Back to top</span>
-                  <svg
-                    width="14"
-                    height="14"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    className="inline-block"
-                  >
-                    <path
-                      d="M12 19V5M12 5L6 11M12 5L18 11"
-                      stroke="currentColor"
-                      strokeWidth="1.5"
-                      strokeLinecap="square"
-                    />
-                  </svg>
+                  <BackToTopIcon />
                 </button>
               </div>
             </div>
@@ -103,11 +98,13 @@ export function Footer() {
 
         <div className="grid grid-cols-3 gap-6 md:gap-10 lg:gap-20">
           <div className="col-span-3 md:col-span-2">
-            <p className="body-sm text-secondary">
+            <p className="body-sm text-secondary flex flex-wrap items-center gap-y-1">
               <span>Young AI Leaders Linz 2025</span>
-              <span className="mx-3">/</span>
+              <span className="mx-2 hidden sm:inline">/</span>
+              <span className="mr-2 sm:hidden">&middot;</span>
               <span>office@youngaileaderslinz.at</span>
-              <span className="mx-3">/</span>
+              <span className="mx-2 hidden sm:inline">/</span>
+              <span className="mr-2 sm:hidden">&middot;</span>
               <span>Linz, Austria</span>
             </p>
           </div>
@@ -129,6 +126,19 @@ export function Footer() {
         </div>
       </div>
     </footer>
+  );
+}
+
+function BackToTopIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" className="inline-block">
+      <path
+        d="M12 19V5M12 5L6 11M12 5L18 11"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        strokeLinecap="square"
+      />
+    </svg>
   );
 }
 
