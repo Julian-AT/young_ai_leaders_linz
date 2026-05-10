@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@/components/shared/icons";
 
@@ -37,6 +37,16 @@ export function ProgramsSwitcher() {
   const goPrev = () => setActive((a) => (a - 1 + PROGRAMS.length) % PROGRAMS.length);
   const goNext = () => setActive((a) => (a + 1) % PROGRAMS.length);
 
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+      e.preventDefault();
+      setActive((a) => (a + 1) % PROGRAMS.length);
+    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+      e.preventDefault();
+      setActive((a) => (a - 1 + PROGRAMS.length) % PROGRAMS.length);
+    }
+  }, []);
+
   return (
     <section className="flex flex-col gap-12 py-40">
       <div className="max-w-block-md">
@@ -46,13 +56,16 @@ export function ProgramsSwitcher() {
         </p>
       </div>
 
-      {/* Desktop: grid with video left, list right */}
       <div className="hidden md:grid md:grid-cols-3 md:gap-10 lg:gap-20">
         <div className="md:col-span-2">
           <div className="relative flex aspect-[670/480] h-full w-full items-center justify-center overflow-hidden rounded-2xl bg-[rgb(24,21,21)]">
             {PROGRAMS.map((p, i) => (
               <div
                 key={p.title}
+                role="tabpanel"
+                id={`program-panel-${i}`}
+                aria-labelledby={`program-tab-${i}`}
+                hidden={i !== active}
                 className="absolute inset-0 flex items-center justify-center transition-opacity duration-300"
                 style={{ opacity: i === active ? 1 : 0 }}
               >
@@ -65,7 +78,12 @@ export function ProgramsSwitcher() {
         </div>
 
         <div className="flex flex-col md:col-span-1">
-          <dl className="flex flex-col gap-6">
+          <div
+            role="tablist"
+            aria-label="Programs"
+            onKeyDown={handleKeyDown}
+            className="flex flex-col gap-6"
+          >
             {PROGRAMS.map((p, i) => (
               <div
                 key={p.title}
@@ -74,6 +92,11 @@ export function ProgramsSwitcher() {
               >
                 <button
                   type="button"
+                  role="tab"
+                  id={`program-tab-${i}`}
+                  aria-selected={i === active}
+                  aria-controls={`program-panel-${i}`}
+                  tabIndex={i === active ? 0 : -1}
                   onClick={() => setActive(i)}
                   className="block w-full max-w-[296px] cursor-pointer text-left transition-opacity"
                   style={{ opacity: i === active ? 1 : 0.2 }}
@@ -83,22 +106,24 @@ export function ProgramsSwitcher() {
                 </button>
               </div>
             ))}
-          </dl>
+          </div>
 
           <div className="mt-auto flex gap-2 pt-6">
-            <button type="button" className="btn-icon" onClick={goPrev}>
+            <button
+              type="button"
+              className="btn-icon"
+              onClick={goPrev}
+              aria-label="Previous program"
+            >
               <ArrowLeftIcon />
-              <span className="sr-only">Previous program</span>
             </button>
-            <button type="button" className="btn-icon" onClick={goNext}>
+            <button type="button" className="btn-icon" onClick={goNext} aria-label="Next program">
               <ArrowRightIcon />
-              <span className="sr-only">Next program</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile: stacked */}
       <div className="flex flex-col gap-10 md:hidden">
         {PROGRAMS.map((p) => (
           <div key={p.title} className="flex flex-col gap-4">

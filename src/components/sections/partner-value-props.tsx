@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@/components/shared/icons";
 
@@ -24,6 +24,16 @@ export function PartnerValueProps() {
   const goPrev = () => setActive((a) => (a - 1 + PROPS.length) % PROPS.length);
   const goNext = () => setActive((a) => (a + 1) % PROPS.length);
 
+  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
+    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+      e.preventDefault();
+      setActive((a) => (a + 1) % PROPS.length);
+    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+      e.preventDefault();
+      setActive((a) => (a - 1 + PROPS.length) % PROPS.length);
+    }
+  }, []);
+
   return (
     <section className="flex flex-col gap-12 py-40">
       <h2 className="h3 text-balance">For organizations.</h2>
@@ -34,6 +44,10 @@ export function PartnerValueProps() {
             {PROPS.map((p, i) => (
               <div
                 key={p.title}
+                role="tabpanel"
+                id={`partner-panel-${i}`}
+                aria-labelledby={`partner-tab-${i}`}
+                hidden={i !== active}
                 className="absolute inset-0 flex items-center justify-center transition-opacity duration-300"
                 style={{ opacity: i === active ? 1 : 0 }}
               >
@@ -46,7 +60,12 @@ export function PartnerValueProps() {
         </div>
 
         <div className="flex flex-col md:col-span-1">
-          <dl className="flex flex-col gap-6">
+          <div
+            role="tablist"
+            aria-label="Partner benefits"
+            onKeyDown={handleKeyDown}
+            className="flex flex-col gap-6"
+          >
             {PROPS.map((p, i) => (
               <div
                 key={p.title}
@@ -55,6 +74,11 @@ export function PartnerValueProps() {
               >
                 <button
                   type="button"
+                  role="tab"
+                  id={`partner-tab-${i}`}
+                  aria-selected={i === active}
+                  aria-controls={`partner-panel-${i}`}
+                  tabIndex={i === active ? 0 : -1}
                   onClick={() => setActive(i)}
                   className="block w-full max-w-[296px] cursor-pointer text-left transition-opacity"
                   style={{ opacity: i === active ? 1 : 0.2 }}
@@ -64,22 +88,19 @@ export function PartnerValueProps() {
                 </button>
               </div>
             ))}
-          </dl>
+          </div>
 
           <div className="mt-auto flex gap-2 pt-6">
-            <button type="button" className="btn-icon" onClick={goPrev}>
+            <button type="button" className="btn-icon" onClick={goPrev} aria-label="Previous">
               <ArrowLeftIcon />
-              <span className="sr-only">Previous</span>
             </button>
-            <button type="button" className="btn-icon" onClick={goNext}>
+            <button type="button" className="btn-icon" onClick={goNext} aria-label="Next">
               <ArrowRightIcon />
-              <span className="sr-only">Next</span>
             </button>
           </div>
         </div>
       </div>
 
-      {/* Mobile stacked */}
       <div className="flex flex-col gap-8 md:hidden">
         {PROPS.map((p) => (
           <div
