@@ -1,0 +1,320 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+  --font-sans: var(--font-riforma), Arial, ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-riforma-mono), Arial, ui-monospace, monospace;
+  --font-riforma: var(--font-riforma), Arial, sans-serif;
+  --font-heading: var(--font-riforma), Arial, sans-serif;
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+
+  /* New-gen design tokens */
+  --color-bg-primary: var(--bg-primary);
+  --color-bg-primary-inverse: var(--bg-primary-inverse);
+  --color-text-primary: var(--text-primary);
+  --color-text-secondary: var(--text-secondary);
+  --color-text-tertiary: var(--text-tertiary);
+  --color-stroke-primary: var(--stroke-primary);
+  --color-surface-opaque: var(--surface-opaque);
+  --color-surface-opaque-secondary: var(--surface-opaque-secondary);
+  --color-surface-secondary: var(--surface-secondary);
+
+  /* Spacing scale matching Tailwind 4-pixel grid: tw uses 4px*N */
+  --screen-max: 1280px;
+  --content-max: 1200px;
+
+  /* shadcn defaults preserved */
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--text-primary);
+  --color-primary-foreground: var(--bg-primary);
+  --color-secondary: var(--text-secondary);
+  --color-secondary-foreground: var(--bg-primary);
+  --color-muted: var(--surface-secondary);
+  --color-muted-foreground: var(--text-secondary);
+  --color-accent: var(--surface-secondary);
+  --color-accent-foreground: var(--text-primary);
+  --color-destructive: oklch(0.577 0.245 27.325);
+  --color-border: var(--stroke-primary);
+  --color-input: var(--stroke-primary);
+  --color-ring: var(--text-secondary);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --bg-primary: rgb(255, 253, 246);
+  --bg-primary-inverse: rgb(24, 21, 21);
+  --text-primary: rgb(24, 21, 21);
+  --text-secondary: rgb(138, 135, 130);
+  --text-tertiary: rgb(187, 184, 178);
+  --stroke-primary: rgb(227, 224, 218);
+  --surface-secondary: rgb(239, 237, 233);
+  --surface-opaque: rgba(138, 135, 130, 0.3);
+  --surface-opaque-secondary: rgba(24, 21, 21, 0.85);
+
+  --background: var(--bg-primary);
+  --foreground: var(--text-primary);
+  --card: var(--bg-primary);
+  --card-foreground: var(--text-primary);
+  --popover: var(--bg-primary);
+  --popover-foreground: var(--text-primary);
+  --radius: 0.625rem;
+}
+
+/* Dark sections of the page - used by the dark band wrapper */
+.theme-dark {
+  --bg-primary: rgb(24, 21, 21);
+  --bg-primary-inverse: rgb(255, 253, 246);
+  --text-primary: rgb(255, 253, 246);
+  --text-secondary: rgb(138, 135, 130);
+  --text-tertiary: rgb(96, 94, 90);
+  --stroke-primary: rgb(56, 53, 53);
+  --surface-secondary: rgb(40, 37, 37);
+  --surface-opaque: rgba(255, 253, 246, 0.15);
+  --surface-opaque-secondary: rgba(255, 253, 246, 0.1);
+}
+
+@layer base {
+  html {
+    @apply font-sans;
+  }
+  body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+  }
+  * {
+    border-color: var(--stroke-primary);
+  }
+}
+
+/* Custom utilities matching the original site's class naming. These override the shadcn defaults. */
+@layer utilities {
+  .bg-primary {
+    background-color: var(--bg-primary);
+  }
+  .bg-primary-inverse {
+    background-color: var(--bg-primary-inverse);
+  }
+  .text-primary {
+    color: var(--text-primary);
+  }
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+  .text-tertiary {
+    color: var(--text-tertiary);
+  }
+  .border-primary {
+    border-color: var(--stroke-primary);
+  }
+  .divide-y > * + * {
+    border-top-width: 1px;
+    border-color: var(--stroke-primary);
+  }
+  .font-riforma {
+    font-family: var(--font-riforma);
+  }
+}
+
+/* Layout primitives */
+@layer components {
+  .page-margins {
+    padding-left: 16px;
+    padding-right: 16px;
+    margin-left: 16px;
+    margin-right: 16px;
+  }
+  @media (min-width: 768px) {
+    .page-margins {
+      padding-left: 24px;
+      padding-right: 24px;
+      margin-left: 24px;
+      margin-right: 24px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .page-margins {
+      padding-left: 40px;
+      padding-right: 40px;
+      margin-left: 80px;
+      margin-right: 80px;
+    }
+  }
+
+  /* New-gen 3-column responsive grid (matches their .grid-ng) */
+  .grid-ng {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+  @media (min-width: 768px) {
+    .grid-ng {
+      gap: 40px;
+    }
+  }
+  @media (min-width: 1024px) {
+    .grid-ng {
+      gap: 80px;
+    }
+  }
+
+  /* Block widths used in content */
+  .max-w-block-sm {
+    max-width: 296px;
+  }
+  .max-w-block-md {
+    max-width: 474px;
+  }
+
+  /* Typography scale */
+  .h1 {
+    font-size: 36px;
+    line-height: 38px;
+    letter-spacing: -0.5px;
+    font-weight: 400;
+  }
+  @media (min-width: 768px) {
+    .h1 {
+      font-size: 56px;
+      line-height: 56px;
+    }
+  }
+
+  .h3 {
+    font-size: 24px;
+    line-height: 28px;
+    font-weight: 400;
+  }
+  @media (min-width: 768px) {
+    .h3 {
+      font-size: 30px;
+      line-height: 36px;
+    }
+  }
+
+  .h4 {
+    font-size: 20px;
+    line-height: 24px;
+    font-weight: 400;
+  }
+  @media (min-width: 1024px) {
+    .h4 {
+      font-size: 24px;
+      line-height: 28px;
+    }
+  }
+
+  .body-md {
+    font-size: 16px;
+    line-height: 24px;
+  }
+  .body-sm {
+    font-size: 13px;
+    line-height: 16px;
+  }
+  .caption {
+    font-size: 10px;
+    line-height: 12px;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+  .text-tertiary {
+    color: var(--text-tertiary);
+  }
+
+  /* Surface utilities */
+  .bg-surface-opaque {
+    background-color: var(--surface-opaque);
+  }
+  .bg-surface-opaque-secondary {
+    background-color: var(--surface-opaque-secondary);
+  }
+  .bg-surface-secondary {
+    background-color: var(--surface-secondary);
+  }
+  .bg-opaque-200 {
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  /* Buttons */
+  .btn-small {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: var(--text-primary);
+    color: var(--bg-primary);
+    font-size: 13px;
+    line-height: 16px;
+    cursor: pointer;
+    transition: opacity 100ms;
+  }
+  .btn-small:hover {
+    opacity: 0.85;
+  }
+  .btn-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    border-radius: 9999px;
+    background-color: var(--surface-secondary);
+    color: var(--text-primary);
+    cursor: pointer;
+    transition: background-color 150ms;
+  }
+  .btn-icon:hover {
+    background-color: var(--stroke-primary);
+  }
+  .btn-icon:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+  }
+
+  /* Spacing keys used in the original site (multiples of 4 / 8 / 16) */
+  /* Tailwind 4 already supports arbitrary numeric e.g. py-160 = 160px when configured.
+     We rely on @custom-variant + arbitrary numerics. */
+}
+
+/* Hide scrollbar utility used by horizontal scrolling sections */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  scrollbar-width: none;
+}
+
+/* Lenis defaults (the lib injects body class lenis when active) */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: clip;
+}
