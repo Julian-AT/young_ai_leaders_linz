@@ -7,16 +7,16 @@ interface Partner {
 }
 
 const PARTNERS: Partner[] = [
-  { name: "AI for Good (UN/ITU)", logo: "/logos/ai_for_good.png", scale: 1.3 },
-  { name: "City of Linz", logo: "/logos/linz.png" },
-  { name: "JKU Linz", logo: "/logos/JKU_Logo.svg.png" },
-  { name: "FH Upper Austria", logo: "/logos/fh_upper_austria.png", scale: 1.2 },
-  { name: "AI Austria", logo: "/logos/Logo_AI_Klein.png" },
-  { name: "AI Upper Austria", logo: "/logos/Logo_AI_Klein.png" },
-  { name: "Business Upper Austria", logo: "/logos/buisiness_upper_austria.webp", scale: 1.4 },
-  { name: "IT:U Austria", logo: "/logos/itu_austria.png", scale: 1.2 },
-  { name: "LIT Open Innovation Center", logo: "/logos/lit_innovation_center.png", scale: 1.3 },
-  { name: "JKU Alumni Club", logo: "/logos/jku_alumni.webp", scale: 1.2 },
+  { name: "AI for Good (UN/ITU)", logo: "/logos/ai_for_good.png" },
+  { name: "City of Linz", logo: "/logos/linz.png", scale: 0.8 },
+  { name: "JKU Linz", logo: "/logos/JKU_Logo.svg.png", scale: 0.9 },
+  { name: "FH Upper Austria", logo: "/logos/fh_upper_austria.png" },
+  { name: "AI Factory Austria", logo: "/logos/Logo_AI_Klein.png", scale: 1.4 },
+  { name: "Business Upper Austria", logo: "/logos/buisiness_upper_austria.webp", scale: 1.3 },
+  { name: "IT:U Austria", logo: "/logos/itu_austria.png", scale: 0.9 },
+  { name: "LIT Open Innovation Center", logo: "/logos/lit_innovation_center.png", scale: 1.1 },
+  { name: "JKU Alumni Club", logo: "/logos/jku_alumni.webp", scale: 1.4 },
+  { name: "Digital Austria Kompetenzen", logo: "/logos/digital_competence_austria.png" },
 ];
 
 export function PartnersStrip() {
@@ -44,9 +44,9 @@ export function PartnersStrip() {
               <Image
                 src={partner.logo}
                 alt={partner.name}
-                width={120}
-                height={60}
-                className="max-h-[40px] w-auto object-contain"
+                width={160}
+                height={80}
+                className="max-h-[44px] w-auto object-contain"
                 style={{ transform: `scale(${partner.scale ?? 1})` }}
               />
             ) : (
