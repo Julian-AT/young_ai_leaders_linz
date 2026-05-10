@@ -13,56 +13,53 @@ export function Header() {
   return (
     <div className="page-margins bg-primary text-primary sticky top-0 z-20 mx-auto w-full max-w-[1280px] transition-colors duration-500">
       <header className="relative py-3 md:pt-6 md:pb-4">
-        <div className="relative z-40 flex flex-row items-center justify-between md:grid md:grid-cols-3 md:gap-10 lg:gap-20">
-          <div className="md:col-span-1">
-            <Link href="/" className="relative flex items-center gap-2">
-              <Image
-                src="/logos/yall-logo.png"
-                alt="Young AI Leaders Linz"
-                width={28}
-                height={28}
-                className="rounded-sm"
-              />
-              <span className="hidden text-[13px] font-medium tracking-tight lg:inline">
-                Young AI Leaders Linz
-              </span>
-            </Link>
-          </div>
+        <div className="relative z-40 flex flex-row items-center justify-between">
+          <Link href="/" className="relative flex shrink-0 items-center gap-2">
+            <Image
+              src="/logos/yall-logo.png"
+              alt="Young AI Leaders Linz"
+              width={28}
+              height={28}
+              className="rounded-sm"
+            />
+            <span className="hidden text-[13px] font-medium tracking-tight lg:inline">
+              Young AI Leaders Linz
+            </span>
+          </Link>
 
-          <div className="flex min-h-[32px] items-center justify-end gap-4 md:col-span-2 md:col-start-2 lg:col-span-1 lg:col-start-3">
-            <nav className="hidden w-full md:block">
-              <ul className="body-sm flex h-full min-h-[34px] w-full items-center justify-end gap-6">
-                {NAV_LINKS.map((link) => (
-                  <li key={link.label}>
-                    <Link
-                      href={link.href}
-                      className="hover:text-secondary transition-colors duration-100"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
-                <li>
-                  <a
-                    href={APPLY_URL}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="btn-small inline-flex"
+          <nav className="hidden md:block">
+            <ul className="body-sm flex items-center gap-6 whitespace-nowrap">
+              {NAV_LINKS.map((link) => (
+                <li key={link.label}>
+                  <Link
+                    href={link.href}
+                    className="hover:text-secondary transition-colors duration-100"
                   >
-                    Apply Now
-                  </a>
+                    {link.label}
+                  </Link>
                 </li>
-              </ul>
-            </nav>
-            <button
-              type="button"
-              aria-label="Toggle menu"
-              className="cursor-pointer md:hidden"
-              onClick={() => setMenuOpen((s) => !s)}
-            >
-              <MenuIcon open={menuOpen} />
-            </button>
-          </div>
+              ))}
+              <li>
+                <a
+                  href={APPLY_URL}
+                  target="_blank"
+                  rel="noreferrer"
+                  className="btn-small inline-flex whitespace-nowrap"
+                >
+                  Apply Now
+                </a>
+              </li>
+            </ul>
+          </nav>
+
+          <button
+            type="button"
+            aria-label="Toggle menu"
+            className="cursor-pointer md:hidden"
+            onClick={() => setMenuOpen((s) => !s)}
+          >
+            <MenuIcon open={menuOpen} />
+          </button>
         </div>
       </header>
 
