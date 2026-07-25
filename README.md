@@ -6,8 +6,7 @@ Marketing website for Young AI Leaders Linz — the Austrian hub of the global A
 
 - **Next.js 16** — App Router, React 19, TypeScript strict
 - **Tailwind CSS v4** — oklch design tokens, CSS-first config
-- **shadcn/ui** — Radix primitives
-- **Deployment** — Docker (standalone) or Vercel
+- **Deployment** — Vercel
 
 ## Getting Started
 
@@ -39,15 +38,12 @@ src/
   components/
     shared/               # Layout components (header, footer, smooth-scroll, theme-band)
     sections/             # Page sections (hero, stats, programs, partners, etc.)
-    ui/                   # shadcn/ui primitives
-  content/                # Static content data (future CMS swap-point)
+  content/                # Static content data (about, partners, programs, site)
   hooks/                  # Shared React hooks (use-reveal, use-typewriter)
   config/                 # Environment validation
-  lib/                    # Utilities (cn)
 public/
   fonts/                  # Self-hosted WOFF2
   images/                 # Site images
-  videos/                 # WebM + MP4 pairs
   logos/                  # Brand assets
   seo/                    # Favicon, OG image
 ```
@@ -55,7 +51,7 @@ public/
 ## Architecture
 
 - **Server-first** — client components only where interactivity is required
-- **Content layer** (`src/content/`) — centralized data, ready for future CMS integration
+- **Content layer** (`src/content/`) — centralized static content for all pages
 - **No global state** — server rendering, props, URL state only
 - **No barrel exports** — explicit file imports for tree-shaking
 
@@ -66,13 +62,10 @@ Pre-commit hooks run automatically via Husky + lint-staged:
 - ESLint auto-fix
 - Prettier formatting
 
-## Docker
-
-```bash
-docker compose up app --build    # Production on port 3000
-docker compose up dev --build    # Dev mode on port 3001
-```
-
 ## Environment
 
 Copy `.env.example` to `.env.local` and configure as needed. See `src/config/env.ts` for the validation schema.
+
+```
+NEXT_PUBLIC_SITE_URL=https://youngaileaderslinz.at
+```

@@ -7,9 +7,8 @@ This version has breaking changes — APIs, conventions, and file structure may 
 ## Tech Stack
 
 - **Framework:** Next.js 16 (App Router, React 19, TypeScript strict)
-- **UI:** shadcn/ui (Radix primitives, Tailwind CSS v4, `cn()` utility)
 - **Styling:** Tailwind CSS v4 with oklch design tokens
-- **Deployment:** Docker (standalone) or Vercel
+- **Deployment:** Vercel
 
 ## Commands
 
@@ -19,6 +18,7 @@ This version has breaking changes — APIs, conventions, and file structure may 
 - `npm run lint:fix` — ESLint auto-fix
 - `npm run typecheck` — TypeScript check
 - `npm run format` — Prettier format
+- `npm run format:check` — Check formatting
 - `npm run check` — Run lint + typecheck + build
 
 ## Code Style
@@ -39,15 +39,12 @@ src/
   components/
     shared/               # Layout-level (header, footer, smooth-scroll, theme-band, icons)
     sections/             # Page sections (hero, stats, programs-switcher, etc.)
-    ui/                   # shadcn/ui primitives
-  content/                # Static content data (future CMS swap-point)
+  content/                # Static content data (about, partners, programs, site)
   hooks/                  # Shared React hooks
   config/                 # Environment validation
-  lib/                    # Utilities (cn)
 public/
   fonts/                  # Self-hosted WOFF2
   images/                 # Site images
-  videos/                 # WebM + MP4 pairs
   logos/                  # Brand assets
   seo/                    # Favicon, OG image
 ```
@@ -55,7 +52,7 @@ public/
 ## Architecture Rules
 
 - Server components by default — only add "use client" for interactivity
-- Content data lives in `src/content/` — this is the future CMS swap-point
+- Content data lives in `src/content/` — centralized static content layer
 - No barrel exports (index.ts) — use explicit file imports
 - No global state management — use server rendering, props, URL state
 - Shared hooks in `src/hooks/` — e.g., `use-reveal.ts` for IntersectionObserver animations

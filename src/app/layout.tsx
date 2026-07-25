@@ -7,6 +7,7 @@ import { Footer } from "@/components/shared/footer";
 import { Header } from "@/components/shared/header";
 import { ScrollToTop } from "@/components/shared/scroll-to-top";
 import { SmoothScroll } from "@/components/shared/smooth-scroll";
+import { env } from "@/config/env";
 
 const riformaLL = localFont({
   src: [
@@ -37,7 +38,7 @@ export const metadata: Metadata = {
   },
   description:
     "We build AI that matters. A youth-led community in Linz, part of the global AI for Good network.",
-  metadataBase: new URL("https://youngaileaderslinz.at"),
+  metadataBase: new URL(env.NEXT_PUBLIC_SITE_URL),
   icons: {
     icon: [
       { url: "/seo/favicon-16.png", sizes: "16x16", type: "image/png" },
@@ -77,8 +78,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: "Young AI Leaders Linz",
-              url: "https://youngaileaderslinz.at",
-              logo: "https://youngaileaderslinz.at/logos/yall-logo.png",
+              url: env.NEXT_PUBLIC_SITE_URL,
+              logo: `${env.NEXT_PUBLIC_SITE_URL}/logos/yall-logo.png`,
               description:
                 "Youth-led AI community in Linz, part of the global AI for Good network.",
               address: {

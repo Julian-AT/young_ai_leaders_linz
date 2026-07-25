@@ -1,5 +1,6 @@
 # dependencies
 node_modules/
+bun.lock
 
 # next.js
 .next/
@@ -17,6 +18,7 @@ build/
 # ide
 .vscode/
 .idea/
+.cursor/hooks/state/
 *.swp
 *.swo
 

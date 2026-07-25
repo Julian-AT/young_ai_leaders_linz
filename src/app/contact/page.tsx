@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 
 import { ArrowOutIcon } from "@/components/shared/icons";
-import { SOCIAL_LINKS } from "@/content/site";
+import { ADDRESS, CONTACT_EMAIL, SOCIAL_LINKS } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -25,15 +25,15 @@ export default function ContactPage() {
         <div className="col-span-3 md:col-span-1">
           <p className="body-sm text-secondary mb-3 tracking-wider uppercase">Email</p>
           <a
-            href="mailto:office@youngaileaderslinz.at"
+            href={`mailto:${CONTACT_EMAIL}`}
             className="body-md hover:text-secondary transition-colors duration-100"
           >
-            office@youngaileaderslinz.at
+            {CONTACT_EMAIL}
           </a>
         </div>
         <div className="col-span-3 md:col-span-1">
           <p className="body-sm text-secondary mb-3 tracking-wider uppercase">Location</p>
-          <p className="body-md">Linz, Austria</p>
+          <p className="body-md">{ADDRESS}</p>
         </div>
         <div className="col-span-3 md:col-span-1">
           <p className="body-sm text-secondary mb-3 tracking-wider uppercase">Social</p>

@@ -3,7 +3,8 @@ import Image from "next/image";
 
 import { PartnerValueProps } from "@/components/sections/partner-value-props";
 import { ThemeBand } from "@/components/shared/theme-band";
-import { getPartners, getSiteSettings } from "@/lib/queries";
+import { PARTNERS } from "@/content/partners";
+import { CONTACT_EMAIL } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Partners",
@@ -20,12 +21,10 @@ const CATEGORY_LABELS: Record<string, string> = {
 
 const CATEGORY_ORDER = ["global", "public", "academic", "industry", "community"];
 
-export default async function PartnersPage() {
-  const [{ docs: partners }, settings] = await Promise.all([getPartners(), getSiteSettings()]);
-
+export default function PartnersPage() {
   const grouped = CATEGORY_ORDER.map((category) => ({
     label: CATEGORY_LABELS[category] ?? category,
-    partners: partners.filter((p) => p.category === category),
+    partners: PARTNERS.filter((p) => p.category === category),
   })).filter((g) => g.partners.length > 0);
 
   return (
@@ -44,35 +43,22 @@ export default async function PartnersPage() {
           <div key={group.label} className="flex flex-col gap-4">
             <p className="body-sm text-secondary tracking-wider uppercase">{group.label}</p>
             <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 md:grid-cols-4">
-              {group.partners.map((partner) => {
-                const logoSrc =
-                  typeof partner.logo === "object" && partner.logo?.url
-                    ? partner.logo.url
-                    : partner.logoPath;
-
-                return (
-                  <div
-                    key={partner.name}
-                    className="flex aspect-[3/2] items-center justify-center overflow-hidden rounded-lg border p-5"
-                    style={{ borderColor: "var(--stroke-primary)" }}
-                  >
-                    {logoSrc ? (
-                      <Image
-                        src={logoSrc}
-                        alt={partner.name}
-                        width={160}
-                        height={80}
-                        className="max-h-[48px] w-auto object-contain"
-                        style={{ transform: `scale(${partner.scale ?? 1})` }}
-                      />
-                    ) : (
-                      <span className="text-secondary text-center text-[11px] font-medium tracking-wide">
-                        {partner.name}
-                      </span>
-                    )}
-                  </div>
-                );
-              })}
+              {group.partners.map((partner) => (
+                <div
+                  key={partner.name}
+                  className="flex aspect-[3/2] items-center justify-center overflow-hidden rounded-lg border p-5"
+                  style={{ borderColor: "var(--stroke-primary)" }}
+                >
+                  <Image
+                    src={partner.logoPath}
+                    alt={partner.name}
+                    width={160}
+                    height={80}
+                    className="max-h-[48px] w-auto object-contain"
+                    style={{ transform: `scale(${partner.scale})` }}
+                  />
+                </div>
+              ))}
             </div>
           </div>
         ))}
@@ -84,7 +70,7 @@ export default async function PartnersPage() {
 
       <section className="py-40">
         <h2 className="h3 mb-4 text-balance">Interested in partnering?</h2>
-        <a href={`mailto:${settings.contactEmail}`} className="btn-small inline-flex">
+        <a href={`mailto:${CONTACT_EMAIL}`} className="btn-small inline-flex">
           Get in touch
         </a>
       </section>

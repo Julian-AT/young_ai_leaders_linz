@@ -4,6 +4,10 @@ import { HugeiconsIcon } from "@hugeicons/react";
 export const APPLY_URL =
   "https://docs.google.com/forms/d/e/1FAIpQLScPMYklf0RthaF-W_tQjiPMNaB8oxb0uT3IDmEkz2-hQnF7sA/viewform";
 
+export const CONTACT_EMAIL = "office@youngaileaderslinz.at";
+
+export const ADDRESS = "Linz, Austria";
+
 export const NAV_LINKS = [
   { label: "About", href: "/about" },
   { label: "Programs", href: "/programs" },

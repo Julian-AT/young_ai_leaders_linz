@@ -1,7 +1,5 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-
 import { useReveal } from "@/hooks/use-reveal";
 
 const STATS = [
@@ -11,22 +9,7 @@ const STATS = [
 ];
 
 export function StatsSection() {
-  const videoRef = useRef<HTMLVideoElement | null>(null);
   const { ref: dlRef, revealed } = useReveal(0.2);
-
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    const obs = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) video.play().catch(() => {});
-        else video.pause();
-      },
-      { threshold: 0.25 },
-    );
-    obs.observe(video);
-    return () => obs.disconnect();
-  }, []);
 
   return (
     <div className="flex flex-col gap-12 py-40">
@@ -42,15 +25,6 @@ export function StatsSection() {
       </div>
 
       <figure className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-2xl bg-[rgb(24,21,21)]">
-        <video
-          ref={videoRef}
-          muted
-          playsInline
-          loop
-          preload="metadata"
-          className="hidden h-full w-full object-cover"
-          poster=""
-        />
         <span className="font-riforma text-[12px] tracking-widest text-[rgb(138,135,130)] uppercase">
           Community highlight video
         </span>

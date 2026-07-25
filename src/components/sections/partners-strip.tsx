@@ -1,33 +1,6 @@
 import Image from "next/image";
 
-interface Partner {
-  name: string;
-  logo?: string;
-  scale?: number;
-}
-
-const PARTNERS: Partner[] = [
-  { name: "AI for Good (UN/ITU)", logo: "/logos/ai_for_good.png", scale: 1.1 },
-  { name: "City of Linz", logo: "/logos/linz.png", scale: 0.7 },
-  { name: "JKU Linz", logo: "/logos/JKU_Logo.svg.png", scale: 0.85 },
-  { name: "FH Upper Austria", logo: "/logos/fh_upper_austria.png", scale: 1.0 },
-  { name: "AI Factory Austria", logo: "/logos/Logo_AI_Klein.png", scale: 1.5 },
-  { name: "AI Austria", logo: "/logos/ai_upper_austria.png", scale: 1.2 },
-  { name: "Business Upper Austria", logo: "/logos/buisiness_upper_austria.webp", scale: 1.4 },
-  { name: "IT:U Austria", logo: "/logos/itu_austria.png", scale: 0.85 },
-  { name: "LIT Open Innovation Center", logo: "/logos/lit_innovation_center.png", scale: 1.2 },
-  { name: "JKU Alumni Club", logo: "/logos/jku_alumni.webp", scale: 1.6 },
-  {
-    name: "Digital Austria Kompetenzen",
-    logo: "/logos/digital_competence_austria.png",
-    scale: 1.0,
-  },
-  {
-    name: "Linz Institute for Transformative Change",
-    logo: "/logos/linz_institute_transformative_change.webp",
-    scale: 1.6,
-  },
-];
+import { PARTNERS } from "@/content/partners";
 
 export function PartnersStrip() {
   return (
@@ -50,20 +23,14 @@ export function PartnersStrip() {
             className="flex aspect-[3/2] items-center justify-center overflow-hidden rounded-lg border p-5"
             style={{ borderColor: "var(--stroke-primary)" }}
           >
-            {partner.logo ? (
-              <Image
-                src={partner.logo}
-                alt={partner.name}
-                width={160}
-                height={80}
-                className="max-h-[48px] w-auto object-contain"
-                style={{ transform: `scale(${partner.scale ?? 1})` }}
-              />
-            ) : (
-              <span className="text-secondary text-center text-[11px] font-medium tracking-wide">
-                {partner.name}
-              </span>
-            )}
+            <Image
+              src={partner.logoPath}
+              alt={partner.name}
+              width={160}
+              height={80}
+              className="max-h-[48px] w-auto object-contain"
+              style={{ transform: `scale(${partner.scale})` }}
+            />
           </div>
         ))}
       </div>

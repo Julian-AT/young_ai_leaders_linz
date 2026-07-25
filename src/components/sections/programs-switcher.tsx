@@ -3,49 +3,27 @@
 import { useCallback, useState } from "react";
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@/components/shared/icons";
-
-interface Program {
-  title: string;
-  description: string;
-  placeholder: string;
-}
-
-const PROGRAMS: Program[] = [
-  {
-    title: "AI Academy",
-    description:
-      "Workshops and hands-on learning for every skill level. From your first model to production systems.",
-    placeholder: "Academy video",
-  },
-  {
-    title: "Community Projects",
-    description:
-      "Applied AI work with real partners. Industry briefs, mentorship, portfolio outcomes.",
-    placeholder: "Projects video",
-  },
-  {
-    title: "Startup Launchpad",
-    description:
-      "From idea to venture. Equity-free incubation with mentorship, network, and resources.",
-    placeholder: "Launchpad video",
-  },
-];
+import { HOME_PROGRAM_SLIDES } from "@/content/programs";
 
 export function ProgramsSwitcher() {
   const [active, setActive] = useState(0);
+  const count = HOME_PROGRAM_SLIDES.length;
 
-  const goPrev = () => setActive((a) => (a - 1 + PROGRAMS.length) % PROGRAMS.length);
-  const goNext = () => setActive((a) => (a + 1) % PROGRAMS.length);
+  const goPrev = () => setActive((a) => (a - 1 + count) % count);
+  const goNext = () => setActive((a) => (a + 1) % count);
 
-  const handleKeyDown = useCallback((e: React.KeyboardEvent) => {
-    if (e.key === "ArrowDown" || e.key === "ArrowRight") {
-      e.preventDefault();
-      setActive((a) => (a + 1) % PROGRAMS.length);
-    } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
-      e.preventDefault();
-      setActive((a) => (a - 1 + PROGRAMS.length) % PROGRAMS.length);
-    }
-  }, []);
+  const handleKeyDown = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === "ArrowDown" || e.key === "ArrowRight") {
+        e.preventDefault();
+        setActive((a) => (a + 1) % count);
+      } else if (e.key === "ArrowUp" || e.key === "ArrowLeft") {
+        e.preventDefault();
+        setActive((a) => (a - 1 + count) % count);
+      }
+    },
+    [count],
+  );
 
   return (
     <section className="flex flex-col gap-12 py-40">
@@ -59,7 +37,7 @@ export function ProgramsSwitcher() {
       <div className="hidden md:grid md:grid-cols-3 md:gap-10 lg:gap-20">
         <div className="md:col-span-2">
           <div className="relative flex aspect-[670/480] h-full w-full items-center justify-center overflow-hidden rounded-2xl bg-[rgb(24,21,21)]">
-            {PROGRAMS.map((p, i) => (
+            {HOME_PROGRAM_SLIDES.map((p, i) => (
               <div
                 key={p.title}
                 role="tabpanel"
@@ -84,10 +62,10 @@ export function ProgramsSwitcher() {
             onKeyDown={handleKeyDown}
             className="flex flex-col gap-6"
           >
-            {PROGRAMS.map((p, i) => (
+            {HOME_PROGRAM_SLIDES.map((p, i) => (
               <div
                 key={p.title}
-                className={`pb-6 ${i < PROGRAMS.length - 1 ? "border-b" : ""}`}
+                className={`pb-6 ${i < count - 1 ? "border-b" : ""}`}
                 style={{ borderColor: "var(--stroke-primary)" }}
               >
                 <button
@@ -125,7 +103,7 @@ export function ProgramsSwitcher() {
       </div>
 
       <div className="flex flex-col gap-10 md:hidden">
-        {PROGRAMS.map((p) => (
+        {HOME_PROGRAM_SLIDES.map((p) => (
           <div key={p.title} className="flex flex-col gap-4">
             <div className="flex aspect-[670/480] items-center justify-center rounded-2xl bg-[rgb(24,21,21)]">
               <span className="font-riforma text-[11px] tracking-widest text-[rgb(138,135,130)] uppercase">

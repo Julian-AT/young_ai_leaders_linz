@@ -63,27 +63,6 @@ export function ArrowRightIcon({ className, ...props }: SVGProps<SVGSVGElement>)
   );
 }
 
-export function FullscreenIcon({ className, ...props }: SVGProps<SVGSVGElement>) {
-  return (
-    <svg
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      xmlns="http://www.w3.org/2000/svg"
-      className={className}
-      {...props}
-    >
-      <path
-        fillRule="evenodd"
-        clipRule="evenodd"
-        d="M7 12V7H12V8.07143H8.07143V12H7ZM12 15.9286H15.9286V12H17V17H12V15.9286Z"
-        fill="currentColor"
-      />
-    </svg>
-  );
-}
-
 export function MenuIcon({
   open,
   className,

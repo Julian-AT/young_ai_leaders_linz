@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 
 import { ThemeBand } from "@/components/shared/theme-band";
-import { getPrograms } from "@/lib/queries";
+import { PROGRAMS } from "@/content/programs";
 
 export const metadata: Metadata = {
   title: "Programs",
@@ -57,9 +57,7 @@ function ProgramBlock({ title, description, features, dark }: ProgramBlockProps)
   return content;
 }
 
-export default async function ProgramsPage() {
-  const { docs: programs } = await getPrograms();
-
+export default function ProgramsPage() {
   return (
     <>
       <section className="grid grid-cols-3 gap-6 pt-20 pb-20 md:gap-10 md:pt-30 lg:gap-20 lg:pt-20">
@@ -71,13 +69,13 @@ export default async function ProgramsPage() {
         </div>
       </section>
 
-      {programs.map((program) => (
+      {PROGRAMS.map((program) => (
         <ProgramBlock
-          key={program.id}
+          key={program.title}
           title={program.title}
           description={program.shortDescription}
-          features={program.features ?? []}
-          dark={program.darkTheme ?? false}
+          features={program.features}
+          dark={program.darkTheme}
         />
       ))}
     </>
