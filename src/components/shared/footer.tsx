@@ -56,7 +56,7 @@ export function Footer() {
       <div className="flex flex-col gap-20 md:gap-30 lg:gap-40">
         <div className="grid grid-cols-3 gap-6 md:gap-10 lg:gap-20">
           <div className="col-span-3 md:col-span-2">
-            <p className="h4">Young AI Leaders Linz</p>
+            <p className="h4">Young AI Leaders Austria</p>
             <p className="h4 text-secondary">Part of AI for Good</p>
           </div>
           <div className="col-span-3 md:col-span-1">
@@ -72,6 +72,7 @@ export function Footer() {
                 <FooterLink href="/about">About</FooterLink>
                 <FooterLink href="/programs">Programs</FooterLink>
                 <FooterLink href="/partners">Partners</FooterLink>
+                <FooterLink href="/blog">Blog</FooterLink>
                 <FooterLink href="/join">Join Us</FooterLink>
                 <button
                   type="button"
@@ -99,7 +100,7 @@ export function Footer() {
         <div className="grid grid-cols-3 gap-6 md:gap-10 lg:gap-20">
           <div className="col-span-3 md:col-span-2">
             <p className="body-sm text-secondary flex flex-wrap items-center gap-y-1">
-              <span>Young AI Leaders Linz 2025</span>
+              <span>Young AI Leaders Austria 2025</span>
               <span className="mx-2 hidden sm:inline">/</span>
               <span className="mr-2 sm:hidden">&middot;</span>
               <span>office@youngaileaderslinz.at</span>

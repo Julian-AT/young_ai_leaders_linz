@@ -270,6 +270,22 @@
   .btn-small:hover {
     opacity: 0.85;
   }
+  .btn-small-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 12px;
+    border-radius: 4px;
+    background-color: var(--surface-secondary);
+    color: var(--text-primary);
+    font-size: 13px;
+    line-height: 16px;
+    cursor: pointer;
+    transition: opacity 100ms;
+  }
+  .btn-small-secondary:hover {
+    opacity: 0.85;
+  }
   .btn-icon {
     display: inline-flex;
     align-items: center;

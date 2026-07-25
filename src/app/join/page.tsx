@@ -1,19 +1,21 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
-import { Pillars } from "@/components/sections/pillars";
+import { WhoJoins } from "@/components/sections/who-joins";
 import { ThemeBand } from "@/components/shared/theme-band";
-import { APPLY_URL } from "@/content/site";
+import { PHOTO_CREDIT, SITE_IMAGES } from "@/content/media";
+import { APPLY_URL, CONTACT_EMAIL } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Join Us",
   description: "Be part of Austria's youth-led AI community.",
 };
 
-const WHO_JOINS = [
-  { title: "Students", description: "Build skills. Ship real projects." },
-  { title: "Researchers", description: "Bridge theory and practice." },
-  { title: "Professionals", description: "Mentor. Network. Give back." },
-];
+const BENEFITS = [
+  { title: "Events", description: "Hackathons, workshops, delegations." },
+  { title: "Network", description: "100+ hubs. Cross-border projects." },
+  { title: "Outcomes", description: "Portfolio, mentorship, startup support." },
+] as const;
 
 export default function JoinPage() {
   return (
@@ -27,36 +29,36 @@ export default function JoinPage() {
         </div>
       </section>
 
-      <section className="flex flex-col gap-12 py-20">
-        <h2 className="h3 text-balance">Who joins.</h2>
-        <Pillars items={WHO_JOINS} />
-      </section>
+      <WhoJoins />
 
       <ThemeBand>
         <section className="flex flex-col gap-12 py-40">
           <h2 className="h3 text-balance">What you get.</h2>
 
-          <figure className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-2xl bg-[rgb(40,37,37)]">
-            <span className="font-riforma text-[12px] tracking-widest text-[rgb(96,94,90)] uppercase">
-              Community in action video
-            </span>
+          <figure className="relative aspect-video w-full overflow-hidden rounded-2xl bg-[rgb(40,37,37)]">
+            <Image
+              src={SITE_IMAGES.joinApplause.src}
+              alt={SITE_IMAGES.joinApplause.alt}
+              fill
+              sizes="(max-width: 1280px) 100vw, 1120px"
+              quality={80}
+              className="object-cover"
+            />
+            <figcaption className="caption absolute right-3 bottom-3 rounded bg-black/40 px-2 py-1 text-[rgb(187,184,178)]">
+              {PHOTO_CREDIT}
+            </figcaption>
           </figure>
 
           <dl className="flex flex-col gap-10 md:flex-row md:gap-0 md:divide-x">
-            <div className="md:basis-1/3 md:pr-10 md:first:pl-0 lg:pr-20">
-              <dt className="body-md font-medium">Events</dt>
-              <dd className="body-sm text-secondary mt-1">Hackathons, workshops, delegations.</dd>
-            </div>
-            <div className="md:basis-1/3 md:px-10 lg:px-20">
-              <dt className="body-md font-medium">Network</dt>
-              <dd className="body-sm text-secondary mt-1">100+ hubs. Cross-border projects.</dd>
-            </div>
-            <div className="md:basis-1/3 md:pl-10 lg:pl-20">
-              <dt className="body-md font-medium">Outcomes</dt>
-              <dd className="body-sm text-secondary mt-1">
-                Portfolio, mentorship, startup support.
-              </dd>
-            </div>
+            {BENEFITS.map((item) => (
+              <div
+                key={item.title}
+                className="md:basis-1/3 md:pr-10 md:pl-10 md:first:pl-0 lg:pr-20 lg:pl-20"
+              >
+                <dt className="body-md font-medium">{item.title}</dt>
+                <dd className="body-sm text-secondary mt-1">{item.description}</dd>
+              </div>
+            ))}
           </dl>
         </section>
       </ThemeBand>
@@ -73,7 +75,7 @@ export default function JoinPage() {
           >
             Apply Now
           </a>
-          <span className="body-sm text-secondary">office@youngaileaderslinz.at</span>
+          <span className="body-sm text-secondary">{CONTACT_EMAIL}</span>
         </div>
       </section>
     </>

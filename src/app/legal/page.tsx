@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 
 export const metadata: Metadata = {
   title: "Legal",
-  description: "Legal information for Young AI Leaders Linz.",
+  description: "Legal information for Young AI Leaders Austria.",
 };
 
 export default function LegalPage() {
@@ -13,7 +13,7 @@ export default function LegalPage() {
         <div className="body-md max-w-[60ch] space-y-6">
           <div>
             <p className="font-medium">Organization</p>
-            <p className="text-secondary">Young AI Leaders Linz</p>
+            <p className="text-secondary">Young AI Leaders Austria</p>
           </div>
           <div>
             <p className="font-medium">Location</p>

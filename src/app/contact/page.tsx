@@ -6,7 +6,7 @@ import { ADDRESS, CONTACT_EMAIL, SOCIAL_LINKS } from "@/content/site";
 
 export const metadata: Metadata = {
   title: "Contact",
-  description: "Get in touch with Young AI Leaders Linz.",
+  description: "Get in touch with Young AI Leaders Austria.",
 };
 
 export default function ContactPage() {

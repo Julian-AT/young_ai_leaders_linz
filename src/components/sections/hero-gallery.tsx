@@ -3,6 +3,8 @@
 import Image from "next/image";
 import { useEffect, useRef, useState } from "react";
 
+import { SITE_IMAGES } from "@/content/media";
+
 interface Tile {
   src: string;
   alt: string;
@@ -18,10 +20,7 @@ interface Tile {
 
 const TILES: Tile[] = [
   {
-    src: "/images/workshop.jpeg",
-    alt: "Workshop",
-    width: 2048,
-    height: 1394,
+    ...SITE_IMAGES.heroSpeaker,
     align: "left",
     initialWidth: 118,
     finalWidth: 226,
@@ -30,10 +29,7 @@ const TILES: Tile[] = [
     centerLeft: 0,
   },
   {
-    src: "/images/hackathon.jpg",
-    alt: "Hackathon",
-    width: 1080,
-    height: 1350,
+    ...SITE_IMAGES.heroPanel,
     align: "center",
     initialWidth: 153,
     finalWidth: 238,
@@ -42,10 +38,7 @@ const TILES: Tile[] = [
     centerLeft: 126,
   },
   {
-    src: "/images/community.jpeg",
-    alt: "Community",
-    width: 2048,
-    height: 1365,
+    ...SITE_IMAGES.heroNetwork,
     align: "center",
     initialWidth: 211,
     finalWidth: 244,
@@ -54,10 +47,7 @@ const TILES: Tile[] = [
     centerLeft: 287,
   },
   {
-    src: "/images/event.jpeg",
-    alt: "Event",
-    width: 2048,
-    height: 1536,
+    ...SITE_IMAGES.heroSpeakers,
     align: "center",
     initialWidth: 290,
     finalWidth: 215,
@@ -66,10 +56,7 @@ const TILES: Tile[] = [
     centerLeft: 506,
   },
   {
-    src: "/images/team.jpg",
-    alt: "Team",
-    width: 1080,
-    height: 1080,
+    ...SITE_IMAGES.heroAudience,
     align: "right",
     initialWidth: 397,
     finalWidth: 486,
@@ -93,49 +80,49 @@ function MobileGallery() {
     <div className="mt-4 grid grid-cols-3 grid-rows-2 gap-1 md:hidden">
       <div className="relative col-span-1 row-span-1 aspect-[3/4] overflow-hidden rounded-sm">
         <Image
-          src="/images/workshop.jpeg"
-          alt="Workshop"
-          width={2048}
-          height={1394}
+          src={SITE_IMAGES.heroSpeaker.src}
+          alt={SITE_IMAGES.heroSpeaker.alt}
+          width={SITE_IMAGES.heroSpeaker.width}
+          height={SITE_IMAGES.heroSpeaker.height}
           priority
           className="h-full w-full object-cover"
         />
       </div>
       <div className="relative col-span-1 row-span-1 aspect-[3/4] overflow-hidden rounded-sm">
         <Image
-          src="/images/hackathon.jpg"
-          alt="Hackathon"
-          width={1080}
-          height={1350}
+          src={SITE_IMAGES.heroPanel.src}
+          alt={SITE_IMAGES.heroPanel.alt}
+          width={SITE_IMAGES.heroPanel.width}
+          height={SITE_IMAGES.heroPanel.height}
           priority
           className="h-full w-full object-cover"
         />
       </div>
       <div className="relative col-span-1 row-span-1 aspect-[3/4] overflow-hidden rounded-sm">
         <Image
-          src="/images/community.jpeg"
-          alt="Community"
-          width={2048}
-          height={1365}
+          src={SITE_IMAGES.heroNetwork.src}
+          alt={SITE_IMAGES.heroNetwork.alt}
+          width={SITE_IMAGES.heroNetwork.width}
+          height={SITE_IMAGES.heroNetwork.height}
           priority
           className="h-full w-full object-cover"
         />
       </div>
       <div className="relative col-span-1 row-span-1 aspect-[3/4] overflow-hidden rounded-sm">
         <Image
-          src="/images/event.jpeg"
-          alt="Event"
-          width={2048}
-          height={1536}
+          src={SITE_IMAGES.heroSpeakers.src}
+          alt={SITE_IMAGES.heroSpeakers.alt}
+          width={SITE_IMAGES.heroSpeakers.width}
+          height={SITE_IMAGES.heroSpeakers.height}
           className="h-full w-full object-cover"
         />
       </div>
       <div className="relative col-span-2 row-span-1 aspect-[3/2] overflow-hidden rounded-sm">
         <Image
-          src="/images/team.jpg"
-          alt="Team"
-          width={1080}
-          height={1080}
+          src={SITE_IMAGES.heroAudience.src}
+          alt={SITE_IMAGES.heroAudience.alt}
+          width={SITE_IMAGES.heroAudience.width}
+          height={SITE_IMAGES.heroAudience.height}
           className="h-full w-full object-cover"
         />
       </div>

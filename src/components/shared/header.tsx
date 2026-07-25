@@ -41,13 +41,13 @@ export function Header() {
             <Link href="/" className="relative flex items-center gap-2">
               <Image
                 src="/logos/yall-logo.png"
-                alt="Young AI Leaders Linz"
+                alt="Young AI Leaders Austria"
                 width={28}
                 height={28}
                 className="rounded-sm"
               />
               <span className="hidden text-[13px] font-medium tracking-tight lg:inline">
-                Young AI Leaders Linz
+                Young AI Leaders Austria
               </span>
             </Link>
           </div>

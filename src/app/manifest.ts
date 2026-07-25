@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "Young AI Leaders Linz",
+    name: "Young AI Leaders Austria",
     short_name: "YALL",
     description: "Youth-led AI community in Linz. Part of the global AI for Good network.",
     start_url: "/",

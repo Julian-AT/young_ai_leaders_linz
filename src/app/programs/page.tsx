@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
 import { ThemeBand } from "@/components/shared/theme-band";
-import { PROGRAMS } from "@/content/programs";
+import { PHOTO_CREDIT } from "@/content/media";
+import { PROGRAM_IMAGES, PROGRAMS } from "@/content/programs";
+import { ProgramsSwitcher } from "@/components/sections/programs-switcher";
 
 export const metadata: Metadata = {
   title: "Programs",
@@ -13,9 +16,10 @@ interface ProgramBlockProps {
   description: string;
   features: { title: string; description: string }[];
   dark: boolean;
+  image: { src: string; alt: string };
 }
 
-function ProgramBlock({ title, description, features, dark }: ProgramBlockProps) {
+function ProgramBlock({ title, description, features, dark, image }: ProgramBlockProps) {
   const content = (
     <section className="flex flex-col gap-12 py-40">
       <div className="grid grid-cols-3 gap-6 md:gap-10 lg:gap-20">
@@ -28,15 +32,26 @@ function ProgramBlock({ title, description, features, dark }: ProgramBlockProps)
       </div>
 
       <figure
-        className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-2xl"
+        className="relative aspect-video w-full overflow-hidden rounded-2xl"
         style={{ backgroundColor: dark ? "rgb(40,37,37)" : "rgb(227,224,218)" }}
       >
-        <span
-          className="font-riforma text-[12px] tracking-widest uppercase"
-          style={{ color: dark ? "rgb(96,94,90)" : "rgb(138,135,130)" }}
+        <Image
+          src={image.src}
+          alt={image.alt}
+          fill
+          sizes="(max-width: 1280px) 100vw, 1120px"
+          quality={80}
+          className="object-cover"
+        />
+        <figcaption
+          className="caption absolute right-3 bottom-3 rounded px-2 py-1"
+          style={{
+            backgroundColor: "rgba(0,0,0,0.4)",
+            color: "rgb(187,184,178)",
+          }}
         >
-          {title} video
-        </span>
+          {PHOTO_CREDIT}
+        </figcaption>
       </figure>
 
       <dl className="flex flex-col gap-10 md:flex-row md:gap-0 md:divide-x">
@@ -69,15 +84,7 @@ export default function ProgramsPage() {
         </div>
       </section>
 
-      {PROGRAMS.map((program) => (
-        <ProgramBlock
-          key={program.title}
-          title={program.title}
-          description={program.shortDescription}
-          features={program.features}
-          dark={program.darkTheme}
-        />
-      ))}
+      <ProgramsSwitcher />
     </>
   );
 }

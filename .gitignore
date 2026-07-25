@@ -32,3 +32,8 @@ next-env.d.ts
 
 # debug
 npm-debug.log*
+
+# large raw event photo dumps (optimized copies live in public/images/site)
+public/images/events/
+.cursor/photo-previews/
+.cursor/optimize-event-photos.mjs

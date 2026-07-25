@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 
-import { Pillars } from "@/components/sections/pillars";
+import { WhatDrivesUs } from "@/components/sections/what-drives-us";
 import { ThemeBand } from "@/components/shared/theme-band";
 import { ABOUT } from "@/content/about";
+import { PHOTO_CREDIT, SITE_IMAGES } from "@/content/media";
 
 export const metadata: Metadata = {
   title: "About",
@@ -30,10 +32,19 @@ export default function AboutPage() {
             </div>
           </div>
 
-          <figure className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-2xl bg-[rgb(40,37,37)]">
-            <span className="font-riforma text-[12px] tracking-widest text-[rgb(96,94,90)] uppercase">
-              AI for Good network video
-            </span>
+          <figure className="relative aspect-video w-full overflow-hidden rounded-2xl bg-[rgb(40,37,37)]">
+            <Image
+              src={SITE_IMAGES.aboutAudience.src}
+              alt={SITE_IMAGES.aboutAudience.alt}
+              fill
+              sizes="(max-width: 1280px) 100vw, 1120px"
+              quality={80}
+              className="object-cover"
+              priority
+            />
+            <figcaption className="caption absolute right-3 bottom-3 rounded bg-black/40 px-2 py-1 text-[rgb(187,184,178)]">
+              {PHOTO_CREDIT}
+            </figcaption>
           </figure>
 
           <dl className="flex flex-col gap-10 md:flex-row md:gap-0 md:divide-x">
@@ -56,10 +67,7 @@ export default function AboutPage() {
         </section>
       </ThemeBand>
 
-      <section className="flex flex-col gap-12 py-40">
-        <h2 className="h3 text-balance">What drives us.</h2>
-        <Pillars items={ABOUT.pillars} />
-      </section>
+      <WhatDrivesUs />
     </>
   );
 }

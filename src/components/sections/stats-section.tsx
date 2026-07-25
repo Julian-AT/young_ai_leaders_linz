@@ -1,5 +1,8 @@
 "use client";
 
+import Image from "next/image";
+
+import { PHOTO_CREDIT, SITE_IMAGES } from "@/content/media";
 import { useReveal } from "@/hooks/use-reveal";
 
 const STATS = [
@@ -24,10 +27,18 @@ export function StatsSection() {
         </div>
       </div>
 
-      <figure className="relative flex aspect-video w-full items-center justify-center overflow-hidden rounded-2xl bg-[rgb(24,21,21)]">
-        <span className="font-riforma text-[12px] tracking-widest text-[rgb(138,135,130)] uppercase">
-          Community highlight video
-        </span>
+      <figure className="relative aspect-video w-full overflow-hidden rounded-2xl bg-[rgb(24,21,21)]">
+        <Image
+          src={SITE_IMAGES.statsCrowd.src}
+          alt={SITE_IMAGES.statsCrowd.alt}
+          fill
+          sizes="(max-width: 1280px) 100vw, 1120px"
+          quality={80}
+          className="object-cover"
+        />
+        <figcaption className="caption text-tertiary absolute right-3 bottom-3 rounded bg-black/40 px-2 py-1">
+          {PHOTO_CREDIT}
+        </figcaption>
       </figure>
 
       <div

@@ -2,7 +2,7 @@
 
 This version has breaking changes — APIs, conventions, and file structure may all differ from your training data. Read the relevant guide in `node_modules/next/dist/docs/` before writing any code. Heed deprecation notices.
 
-# Young AI Leaders Linz
+# Young AI Leaders Austria
 
 ## Tech Stack
 
@@ -62,3 +62,17 @@ public/
 
 - When launching Claude Code agent teams, ALWAYS have each teammate work in their own worktree branch and merge everyone's work at the end.
 - Pre-commit hooks run ESLint + Prettier via Husky + lint-staged.
+
+## Learned User Preferences
+
+- Use the brand string "Young AI Leaders Austria" (not Linz); keep Linz-named domain, email, social handles, and repo unless explicitly asked to change them.
+- Client-side route changes should reset scroll to the top of the page (Lenis-aware, not only `window.scrollTo`).
+- Prefer cutting unused CMS/infra over keeping partial integrations; this site stays static content on Vercel without Payload or Docker.
+- Blog content should be MDX/markdown with dynamic routes and image support, not a TypeScript-only content module.
+- Blog listing should use infinite scroll and prioritize fast image loading/performance.
+
+## Learned Workspace Facts
+
+- Payload CMS was removed; page content lives in static modules under `src/content/`.
+- Blog posts are MDX files in `src/content/blog/`, compiled with `@next/mdx`, listed via `src/content/blog.ts`, and served at `/blog` and `/blog/[slug]`.
+- Smooth scrolling is powered by Lenis; navigation scroll-reset must use the Lenis instance.

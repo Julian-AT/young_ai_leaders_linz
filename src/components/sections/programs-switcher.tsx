@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useState } from "react";
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@/components/shared/icons";
@@ -36,7 +37,7 @@ export function ProgramsSwitcher() {
 
       <div className="hidden md:grid md:grid-cols-3 md:gap-10 lg:gap-20">
         <div className="md:col-span-2">
-          <div className="relative flex aspect-[670/480] h-full w-full items-center justify-center overflow-hidden rounded-2xl bg-[rgb(24,21,21)]">
+          <div className="relative aspect-[670/480] h-full w-full overflow-hidden rounded-2xl bg-[rgb(24,21,21)]">
             {HOME_PROGRAM_SLIDES.map((p, i) => (
               <div
                 key={p.title}
@@ -44,12 +45,18 @@ export function ProgramsSwitcher() {
                 id={`program-panel-${i}`}
                 aria-labelledby={`program-tab-${i}`}
                 hidden={i !== active}
-                className="absolute inset-0 flex items-center justify-center transition-opacity duration-300"
+                className="absolute inset-0 transition-opacity duration-300"
                 style={{ opacity: i === active ? 1 : 0 }}
               >
-                <span className="font-riforma text-[12px] tracking-widest text-[rgb(138,135,130)] uppercase">
-                  {p.placeholder}
-                </span>
+                <Image
+                  src={p.image}
+                  alt={p.imageAlt}
+                  fill
+                  sizes="(max-width: 1024px) 66vw, 800px"
+                  quality={75}
+                  className="object-cover"
+                  priority={i === 0}
+                />
               </div>
             ))}
           </div>
@@ -105,10 +112,15 @@ export function ProgramsSwitcher() {
       <div className="flex flex-col gap-10 md:hidden">
         {HOME_PROGRAM_SLIDES.map((p) => (
           <div key={p.title} className="flex flex-col gap-4">
-            <div className="flex aspect-[670/480] items-center justify-center rounded-2xl bg-[rgb(24,21,21)]">
-              <span className="font-riforma text-[11px] tracking-widest text-[rgb(138,135,130)] uppercase">
-                {p.placeholder}
-              </span>
+            <div className="relative aspect-[670/480] overflow-hidden rounded-2xl bg-[rgb(24,21,21)]">
+              <Image
+                src={p.image}
+                alt={p.imageAlt}
+                fill
+                sizes="100vw"
+                quality={75}
+                className="object-cover"
+              />
             </div>
             <div>
               <p className="body-md">{p.title}</p>

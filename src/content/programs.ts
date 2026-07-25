@@ -1,3 +1,5 @@
+import { SITE_IMAGES } from "@/content/media";
+
 export const PROGRAMS = [
   {
     title: "AI Academy",
@@ -46,18 +48,28 @@ export const HOME_PROGRAM_SLIDES = [
     title: "AI Academy",
     description:
       "Workshops and hands-on learning for every skill level. From your first model to production systems.",
-    placeholder: "Academy video",
+    image: SITE_IMAGES.homeAcademy.src,
+    imageAlt: SITE_IMAGES.homeAcademy.alt,
   },
   {
     title: "Community Projects",
     description:
       "Applied AI work with real partners. Industry briefs, mentorship, portfolio outcomes.",
-    placeholder: "Projects video",
+    image: SITE_IMAGES.homeProjects.src,
+    imageAlt: SITE_IMAGES.homeProjects.alt,
   },
   {
     title: "Startup Launchpad",
     description:
       "From idea to venture. Equity-free incubation with mentorship, network, and resources.",
-    placeholder: "Launchpad video",
+    image: SITE_IMAGES.homeLaunchpad.src,
+    imageAlt: SITE_IMAGES.homeLaunchpad.alt,
   },
 ];
+
+export const PROGRAM_IMAGES: Record<string, { src: string; alt: string }> = {
+  "AI Academy": SITE_IMAGES.programAcademy,
+  "Community Projects": SITE_IMAGES.programProjects,
+  Hackathon: SITE_IMAGES.programHackathon,
+  "Startup Launchpad": SITE_IMAGES.programLaunchpad,
+};

@@ -1,21 +1,26 @@
 "use client";
 
+import Image from "next/image";
 import { useCallback, useState } from "react";
 
 import { ArrowLeftIcon, ArrowRightIcon } from "@/components/shared/icons";
+import { SITE_IMAGES } from "@/content/media";
 
 const PROPS = [
   {
     title: "Access emerging talent",
     description: "Pre-vetted engineers, developers, and strategists ready to work.",
+    image: SITE_IMAGES.partnerTalent,
   },
   {
     title: "Collaborate on challenges",
     description: "Set a problem. Get prototypes from structured sprints and hackathons.",
+    image: SITE_IMAGES.partnerCollaborate,
   },
   {
     title: "Shape what comes next",
     description: "Build brand affinity with future hires and founders early.",
+    image: SITE_IMAGES.partnerShape,
   },
 ];
 
@@ -40,7 +45,7 @@ export function PartnerValueProps() {
 
       <div className="hidden md:grid md:grid-cols-3 md:gap-10 lg:gap-20">
         <div className="md:col-span-2">
-          <div className="relative flex aspect-[670/480] w-full items-center justify-center overflow-hidden rounded-2xl bg-[rgb(40,37,37)]">
+          <div className="relative aspect-[670/480] w-full overflow-hidden rounded-2xl bg-[rgb(40,37,37)]">
             {PROPS.map((p, i) => (
               <div
                 key={p.title}
@@ -48,12 +53,18 @@ export function PartnerValueProps() {
                 id={`partner-panel-${i}`}
                 aria-labelledby={`partner-tab-${i}`}
                 hidden={i !== active}
-                className="absolute inset-0 flex items-center justify-center transition-opacity duration-300"
+                className="absolute inset-0 transition-opacity duration-300"
                 style={{ opacity: i === active ? 1 : 0 }}
               >
-                <span className="font-riforma text-[12px] tracking-widest text-[rgb(96,94,90)] uppercase">
-                  Partner collaboration visual
-                </span>
+                <Image
+                  src={p.image.src}
+                  alt={p.image.alt}
+                  fill
+                  sizes="(max-width: 1024px) 66vw, 800px"
+                  quality={75}
+                  className="object-cover"
+                  priority={i === 0}
+                />
               </div>
             ))}
           </div>

@@ -1,6 +1,6 @@
-# Young AI Leaders Linz
+# Young AI Leaders Austria
 
-Marketing website for Young AI Leaders Linz — the Austrian hub of the global AI for Good network.
+Marketing website for Young AI Leaders Austria — the Austrian hub of the global AI for Good network.
 
 ## Tech Stack
 

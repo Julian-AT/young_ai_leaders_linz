@@ -33,8 +33,8 @@ const riformaMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    default: "Young AI Leaders Linz",
-    template: "%s | Young AI Leaders Linz",
+    default: "Young AI Leaders Austria",
+    template: "%s | Young AI Leaders Austria",
   },
   description:
     "We build AI that matters. A youth-led community in Linz, part of the global AI for Good network.",
@@ -48,7 +48,7 @@ export const metadata: Metadata = {
     apple: { url: "/seo/apple-icon.png", sizes: "180x180", type: "image/png" },
   },
   openGraph: {
-    title: "Young AI Leaders Linz",
+    title: "Young AI Leaders Austria",
     description:
       "We build AI that matters. A youth-led community in Linz, part of the global AI for Good network.",
     images: ["/seo/og.png"],
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Young AI Leaders Linz",
+    title: "Young AI Leaders Austria",
     description:
       "We build AI that matters. A youth-led community in Linz, part of the global AI for Good network.",
     images: ["/seo/og.png"],
@@ -77,7 +77,7 @@ export default function RootLayout({
             __html: JSON.stringify({
               "@context": "https://schema.org",
               "@type": "Organization",
-              name: "Young AI Leaders Linz",
+              name: "Young AI Leaders Austria",
               url: env.NEXT_PUBLIC_SITE_URL,
               logo: `${env.NEXT_PUBLIC_SITE_URL}/logos/yall-logo.png`,
               description:
@@ -100,15 +100,16 @@ export default function RootLayout({
             }),
           }}
         />
-        <ScrollToTop />
-        <SmoothScroll />
-        <Header />
-        <main className="page-margins mx-auto max-w-[1280px]">
-          <div>{children}</div>
-        </main>
-        <div className="page-margins mx-auto max-w-[1280px]">
-          <Footer />
-        </div>
+        <SmoothScroll>
+          <ScrollToTop />
+          <Header />
+          <main className="page-margins mx-auto max-w-[1280px]">
+            <div>{children}</div>
+          </main>
+          <div className="page-margins mx-auto max-w-[1280px]">
+            <Footer />
+          </div>
+        </SmoothScroll>
       </body>
     </html>
   );

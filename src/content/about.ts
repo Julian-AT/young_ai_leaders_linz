@@ -2,10 +2,10 @@ export const ABOUT = {
   title: "A global network, rooted in Linz.",
   subtitle: "Founded in 2025. Part of AI for Good. Building locally, connected globally.",
   pillars: [
-    { title: "Community", description: "Local hub, global network." },
-    { title: "Education", description: "First principles to production." },
-    { title: "Empowerment", description: "Real responsibility from day one." },
-    { title: "Impact", description: "Outcomes that matter beyond campus." },
+    { title: "Community", description: "Local hub. Global network. Impact from every campus." },
+    { title: "Education", description: "Learn deep. Ship for real. Ship for good, everywhere." },
+    { title: "Empowerment", description: "Own the work from day one. Build the future." },
+    { title: "Impact", description: "Make impact beyond campus, together." },
   ],
   networkTitle: "Part of AI for Good.",
   networkBody:
